@@ -1,5 +1,5 @@
 @extends('layouts.auth-layout')
-@yield('title', 'Reset Password')
+@section('title', 'Reset Password')
 @section('content')
     <div class="authentication-wrapper authentication-basic container-p-y">
         <div class="authentication-inner py-4">

@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@yield('title', 'Confirm Password')
+@section('title', 'Confirm Password')
 
 @section('content')
 <div class="container">
