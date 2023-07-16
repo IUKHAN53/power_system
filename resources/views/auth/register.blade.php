@@ -1,4 +1,5 @@
 @extends('layouts.auth-layout')
+@yield('title', 'Register')
 
 @section('content')
     <div class="authentication-wrapper authentication-basic container-p-y">

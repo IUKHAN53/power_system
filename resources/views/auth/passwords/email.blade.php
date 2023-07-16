@@ -1,5 +1,5 @@
 @extends('layouts.auth-layout')
-
+@yield('title', 'Forgot Password')
 @section('content')
 
     <div class="authentication-wrapper authentication-basic container-p-y">
