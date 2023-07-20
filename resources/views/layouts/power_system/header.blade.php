@@ -8,6 +8,7 @@
     <title>@yield('title', 'Home') - Power System</title>
 
     <meta name="description" content=""/>
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
 
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="{{asset('assets/img/favicon/favicon.ico')}}"/>
@@ -89,6 +90,15 @@
             #layout-menu {
                 width: auto;
             }
+        }
+        .quick-edit-input{
+            display: none;
+            margin:0;
+            height: 100%;
+            width: 100%;
+            border:0!important;
+            background:transparent;
+            outline: none;
         }
     </style>
 </head>

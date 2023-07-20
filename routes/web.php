@@ -22,10 +22,22 @@ Route::get('/', [LoginController::class,'showLoginForm']);
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/dashboard', [PowerSystemController::class, 'dashboard'])->name('dashboard');
+    Route::post('/save-checklist', [PowerSystemController::class, 'calculateChecklist'])->name('save-checklist');
+    Route::post('/save-user-notes', [PowerSystemController::class, 'saveNotes'])->name('save-user-notes');
+
     Route::get('/numbers', [PowerSystemController::class, 'numbers'])->name('numbers');
+    Route::get('/numbers-details/{number}', [PowerSystemController::class, 'numberDetails'])->name('number-details');
+
     Route::get('/ra_dates', [PowerSystemController::class, 'raDates'])->name('ra_dates');
+
     Route::get('/transactions', [PowerSystemController::class, 'transactions'])->name('transactions');
+
     Route::get('/users', [PowerSystemController::class, 'users'])->name('users');
+
+    Route::get('/favourites', [PowerSystemController::class, 'favourites'])->name('favourites');
+
+//    AJAX Routes
+    Route::post('/mark-fav', [PowerSystemController::class, 'markAsFavourite'])->name('mark-fav');
 });
 
 

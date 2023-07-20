@@ -68,4 +68,9 @@ class User extends Authenticatable
         return $this->role === self::ROLE_GUEST;
     }
 
+    public function favourites()
+    {
+        return $this->hasMany(Favourite::class);
+    }
+
 }

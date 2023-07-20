@@ -1,5 +1,7 @@
 <?php
 namespace App\Helpers;
+use Illuminate\Support\Facades\Session;
+
 class helpers{
 
     public static function getSheetId(){

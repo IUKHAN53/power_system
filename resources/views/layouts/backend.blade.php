@@ -13,6 +13,13 @@
         @include('layouts.power_system.navigation')
         <div class="layout-page">
             <div class="content-wrapper">
+                <div class="flash-message">
+                    @foreach (['danger', 'warning', 'success', 'info'] as $msg)
+                        @if(Session::has('alert-' . $msg))
+                            <p class="alert alert-{{ $msg }}">{{ Session::get('alert-' . $msg) }}</p>
+                        @endif
+                    @endforeach
+                </div>
                 @include('layouts.power_system.menu')
                 @yield('content')
                 @include('layouts.power_system.footer')

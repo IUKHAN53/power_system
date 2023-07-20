@@ -28,135 +28,54 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr>
-                                            <td class="text-center">
-                                                <div class="form-check-primary">
-                                                    <input class="form-check-input" type="checkbox" value="" checked="">
-                                                </div>
-                                            </td>
-                                            <td ><a href="number-details.html">0001</a></td>
-                                            <td class="text-center">
-                                                <div class="progress rounded">
-                                                    <div class="progress-bar" role="progressbar" aria-valuenow="70"
-                                                         aria-valuemin="0" aria-valuemax="100" style="width:37%">
-                                                        37%
+                                        @foreach($data as $number => $value)
+                                            <tr>
+                                                <td class="text-center">
+                                                    <div class="form-check-primary">
+                                                        <input class="form-check-input" type="checkbox" onchange="markFav('{{$number}}', this)"
+                                                               {{$value['fav'] == 'true' ? 'checked' : ''}}>
                                                     </div>
-                                                </div>
-                                            </td>
-                                            <td class="text-center">
-                                                <div class="progress rounded">
-                                                    <div class="progress-bar" role="progressbar" aria-valuenow="70"
-                                                         aria-valuemin="0" aria-valuemax="100" style="width:37%">
-                                                        37%
+                                                </td>
+                                                <td>
+                                                    <a href="{{route('number-details',$number)}}">{{str_replace('hkg', '', $number)}}</a>
+                                                </td>
+                                                <td class="text-center">
+                                                    <div class="progress rounded">
+                                                        <div class="progress-bar" role="progressbar" aria-valuenow="70"
+                                                             aria-valuemin="0" aria-valuemax="100" style="width:37%">
+                                                            37%
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </td>
-                                            <td class="text-center">
-                                                <div class="progress rounded">
-                                                    <div class="progress-bar" role="progressbar" aria-valuenow="70"
-                                                         aria-valuemin="0" aria-valuemax="100" style="width:37%">
-                                                        37%
+                                                </td>
+                                                <td class="text-center">
+                                                    <div class="progress rounded">
+                                                        <div class="progress-bar" role="progressbar" aria-valuenow="70"
+                                                             aria-valuemin="0" aria-valuemax="100" style="width:37%">
+                                                            37%
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </td>
-                                            <td class="text-center">
-                                                <div class="progress rounded">
-                                                    <div class="progress-bar" role="progressbar" aria-valuenow="70"
-                                                         aria-valuemin="0" aria-valuemax="100" style="width:37%">
-                                                        37%
+                                                </td>
+                                                <td class="text-center">
+                                                    <div class="progress rounded">
+                                                        <div class="progress-bar" role="progressbar" aria-valuenow="70"
+                                                             aria-valuemin="0" aria-valuemax="100" style="width:37%">
+                                                            37%
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </td>
-                                            <td>24/03/2023</td>
-                                            <td>Tomorrow</td>
-                                            <td></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-center">
-                                                <div class="form-check-primary">
-                                                    <input class="form-check-input" type="checkbox" value="" >
-                                                </div>
-                                            </td>
-                                            <td ><a href="number-details.html">0002</a></td>
-                                            <td class="text-center">
-                                                <div class="progress rounded">
-                                                    <div class="progress-bar" role="progressbar" aria-valuenow="70"
-                                                         aria-valuemin="0" aria-valuemax="100" style="width:37%">
-                                                        37%
+                                                </td>
+                                                <td class="text-center">
+                                                    <div class="progress rounded">
+                                                        <div class="progress-bar" role="progressbar" aria-valuenow="70"
+                                                             aria-valuemin="0" aria-valuemax="100" style="width:37%">
+                                                            37%
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </td>
-                                            <td class="text-center">
-                                                <div class="progress rounded">
-                                                    <div class="progress-bar" role="progressbar" aria-valuenow="70"
-                                                         aria-valuemin="0" aria-valuemax="100" style="width:37%">
-                                                        37%
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="text-center">
-                                                <div class="progress rounded">
-                                                    <div class="progress-bar" role="progressbar" aria-valuenow="70"
-                                                         aria-valuemin="0" aria-valuemax="100" style="width:37%">
-                                                        37%
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="text-center">
-                                                <div class="progress rounded">
-                                                    <div class="progress-bar" role="progressbar" aria-valuenow="70"
-                                                         aria-valuemin="0" aria-valuemax="100" style="width:37%">
-                                                        37%
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>25/03/2023</td>
-                                            <td>2 days</td>
-                                            <td></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-center">
-                                                <div class="form-check-primary">
-                                                    <input class="form-check-input" type="checkbox" value="" checked="">
-                                                </div>
-                                            </td>
-                                            <td ><a href="number-details.html">0003</a></td>
-                                            <td class="text-center">
-                                                <div class="progress rounded">
-                                                    <div class="progress-bar" role="progressbar" aria-valuenow="70"
-                                                         aria-valuemin="0" aria-valuemax="100" style="width:37%">
-                                                        37%
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="text-center">
-                                                <div class="progress rounded">
-                                                    <div class="progress-bar" role="progressbar" aria-valuenow="70"
-                                                         aria-valuemin="0" aria-valuemax="100" style="width:37%">
-                                                        37%
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="text-center">
-                                                <div class="progress rounded">
-                                                    <div class="progress-bar" role="progressbar" aria-valuenow="70"
-                                                         aria-valuemin="0" aria-valuemax="100" style="width:37%">
-                                                        37%
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="text-center">
-                                                <div class="progress rounded">
-                                                    <div class="progress-bar" role="progressbar" aria-valuenow="70"
-                                                         aria-valuemin="0" aria-valuemax="100" style="width:37%">
-                                                        37%
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>25/03/2023</td>
-                                            <td>2 days</td>
-                                            <td></td>
-                                        </tr>
+                                                </td>
+                                                <td>{{$value['next']}}</td>
+                                                <td>{{getReadableDay($value['to_go'])}}</td>
+                                                <td></td>
+                                            </tr>
+                                        @endforeach
                                         </tbody>
                                     </table>
                                 </div>
@@ -166,10 +85,27 @@
                 </div>
             </div>
             <!--/ Sessions line chart -->
-
-
-
         </div>
     </div>
+
+    <script>
+        function markFav(number, element) {
+            $.ajax({
+                url: '{{route('mark-fav')}}',
+                type: 'POST',
+                data: {
+                    number: number,
+                    fav: element.checked
+                },
+                success: function (response) {
+                    if (response.status == 'success') {
+                        toastr.success(response.message);
+                    } else {
+                        toastr.error(response.message);
+                    }
+                }
+            });
+        }
+    </script>
 @endsection
 

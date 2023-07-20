@@ -30,6 +30,11 @@
 <script src="{{asset('assets/vendor/libs/dropzone/dropzone.js')}}"></script>
 <script src="{{asset('assets/js/forms-file-upload.js')}}"></script>
 <script>
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
 
     $(".flatpickr-date").each(function () {
         $(this).flatpickr({
