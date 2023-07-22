@@ -6,8 +6,8 @@
             <div class="col-md-12 col-lg-12">
                 <div class="card">
                     <div class="d-flex align-items-top row">
-                        <div class="col-md-12 col-lg-12 order-2 order-md-1" >
-                            <div class="card-body align-items-top" >
+                        <div class="col-md-12 col-lg-12 order-2 order-md-1">
+                            <div class="card-body align-items-top">
                                 <h5 class="card-header">Users</h5>
                                 <div class="table-responsive text-nowrap">
                                     <table class="table table-striped table-bordered table-hover" id="user-table">
@@ -27,24 +27,32 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-
-                                        <tr>
-                                            <td class="text-center">001</td>
-                                            <td class="text-center">usera</td>
-                                            <td class="text-center">User A</td>
-                                            <td class="text-center">usera@email.com</td>
-                                            <td class="text-center">1234567890</td>
-                                            <td class="text-center quick-edit"><input type="text" class="quick-edit-input text-center flatpickr-date flatpickr-input active"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="text-center quick-edit"><select class="quick-edit-input text-center"><option>admin</option><option>member</option><option>user</option></select><span class="quick-edit-text">admin</span></td>
-                                            <td class="text-center quick-edit"><input type="text" class="quick-edit-input text-center flatpickr-date flatpickr-input active"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="text-center quick-edit"><input type="text" class="quick-edit-input text-center flatpickr-date flatpickr-input active"><span class="quick-edit-text">14/03/2024</span></td>
-                                            <td class="text-center quick-edit"><select class="quick-edit-input text-center"><option>Enabled</option><option>Disabled</option></select><span class="quick-edit-text">Enabled</span></td>
-                                            <td class="text-center align-items-center">
-                                                <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-save"></i></a>
-                                                <a href="transactions.html" class="btn btn-info btn-sm" title="Click to view transaction record of the user"><i class="fa fa-search"></i></a>
-                                            </td>
-                                        </tr>
-
+                                        @foreach($users as $user)
+                                            <tr>
+                                                <td class="text-center">{{$user->id}}</td>
+                                                <td class="text-center">User-{{$user->id}}</td>
+                                                <td class="text-center">{{$user->name}}</td>
+                                                <td class="text-center">{{$user->email}}</td>
+                                                <td class="text-center">{{$user->mobile}}</td>
+                                                <td class="text-center">{{$user->created_at}}</td>
+                                                <td class="text-center">{{\App\Models\User::ROLES[$user->role]}}</td>
+                                                <td class="text-center"></td>
+                                                <td class="text-center"></td>
+                                                <td class="text-center quick-edit">
+                                                    <select class="quick-edit-input text-center">
+                                                        <option>Enabled</option>
+                                                        <option>Disabled</option>
+                                                    </select><span class="quick-edit-text">Enabled</span>
+                                                </td>
+                                                <td class="text-center align-items-center">
+{{--                                                    <a href="#" class="btn btn-primary btn-sm"><i--}}
+{{--                                                            class="fa fa-save"></i></a>--}}
+                                                    <a href="{{route('transactions', ['user_id' => $user->id])}}" class="btn btn-info btn-sm"
+                                                       title="Click to view transaction record of the user"><i
+                                                            class="fa fa-search"></i></a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
                                         </tbody>
                                     </table>
                                 </div>
@@ -54,11 +62,6 @@
                     </div>
                 </div>
             </div>
-            <!--/ Number List -->
-
-
-
-
         </div>
     </div>
 @endsection

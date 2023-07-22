@@ -363,8 +363,8 @@
                                         </div>
                                     </div>
                                     <div class="flex-grow-1">
-                                        <span class="fw-semibold d-block">John Doe</span>
-                                        <small class="text-muted">Admin</small>
+                                        <span class="fw-semibold d-block">{{auth()->user()->name}}</span>
+                                        <small class="text-muted">{{\App\Models\User::ROLES[auth()->user()->role]}}</small>
                                     </div>
                                 </div>
                             </a>
@@ -419,10 +419,13 @@
                             <div class="dropdown-divider"></div>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="auth-login-cover.html" target="_blank">
-                                <i class="mdi mdi-logout me-2"></i>
-                                <span class="align-middle">Log Out</span>
-                            </a>
+                            <form action="{{ route('logout') }}" method="POST">
+                                @csrf
+                                <button class="dropdown-item" type="submit">
+                                    <i class="mdi mdi-logout me-2"></i>
+                                    <span class="align-middle">Log Out</span>
+                                </button>
+                            </form>
                         </li>
                     </ul>
                 </li>

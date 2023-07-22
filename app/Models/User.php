@@ -17,6 +17,12 @@ class User extends Authenticatable
     const ROLE_USER = 2;
     const ROLE_GUEST = 3;
 
+    const ROLES = [
+        self::ROLE_ADMIN => 'Admin',
+        self::ROLE_MEMBER => 'Member',
+        self::ROLE_USER => 'User',
+        self::ROLE_GUEST => 'Guest',
+    ];
 
     /**
      * The attributes that are mass assignable.
@@ -71,6 +77,11 @@ class User extends Authenticatable
     public function favourites()
     {
         return $this->hasMany(Favourite::class);
+    }
+
+    public function transactions()
+    {
+        return $this->hasMany(Transaction::class);
     }
 
 }

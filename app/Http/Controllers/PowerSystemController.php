@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Transaction;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 
 class PowerSystemController extends Controller
 {
@@ -29,7 +32,7 @@ class PowerSystemController extends Controller
                 'fav' => $is_fav,
             ];
         }
-        return view('power_system.dashboard', compact('checklist','data'));
+        return view('power_system.dashboard', compact('checklist', 'data'));
     }
 
     public function numbers()
@@ -59,24 +62,30 @@ class PowerSystemController extends Controller
     public function numberDetails(Request $request, $number)
     {
         $stockno = convertToStockFormat($number);
-        $next_value = DB::table('ra_dates')->where('stockno', $stockno)->pluck('next');
-        isset($next_value[0]) ? $ra_date = $next_value[0] : $ra_date = '0000-00-00';
-        if($ra_date != '0000-00-00'){
-            $ra_date = Carbon::parse($ra_date)->toDateTimeString();
+        $columns = Schema::getColumnListing('ra_dates');
+        $tables_count = count($columns) - 3;
+        $tables = [];
+        $date_ra = [];
+        for ($i = 0; $i < $tables_count; $i++) {
+            $date_from_ra = DB::table('ra_dates')->where('stockno', $stockno)->pluck($columns[$i + 3])->first();
+            $date_ra[$i] = $date_from_ra;
+            if ($date_from_ra != '0000-00-00') {
+                $previous_dates = DB::table($number)->whereDate('date', '<', $date_from_ra)
+                    ->orderBy('date', 'desc')->limit(5)->get();
+                $current_date = DB::table($number)->whereDate('date', $date_from_ra)
+                    ->orderBy('date', 'desc')->limit(1)->get();
+                $next_dates = DB::table($number)->whereDate('date', '>', $date_from_ra)
+                    ->orderBy('date')->limit(2)->get();
+                $data = collect()
+                    ->concat($previous_dates)
+                    ->concat($current_date)
+                    ->concat($next_dates);
+                $tables[$i] = $data->sortBy('date');
+            }
         }
-        $previous_dates = DB::table($number)->whereDate('date','<', $ra_date)
-            ->orderBy('date','desc')->limit(5)->get();
-        $current_date = DB::table($number)->whereDate('date', $ra_date)
-            ->orderBy('date','desc')->limit(1)->get();
-        $next_dates = DB::table($number)->whereDate('date','>', $ra_date)
-            ->orderBy('date')->limit(2)->get();
-        $data = collect()
-            ->concat($previous_dates)
-            ->concat($current_date)
-            ->concat($next_dates);
-        $transactions = DB::table('transactions')->where('stockno', $number)->get();
+        $transactions = Transaction::query()->where('stockno', convertToStockFormat($number))->get();
         $favourites = auth()->user()->favourites()->where('stockno', $number)->exists();
-        return view('power_system.number-details', compact('data', 'number','ra_date', 'transactions', 'favourites'));
+        return view('power_system.number-details', compact('tables', 'number', 'date_ra', 'transactions', 'favourites'));
     }
 
     public function raDates()
@@ -85,14 +94,22 @@ class PowerSystemController extends Controller
         return view('power_system.ra_dates');
     }
 
-    public function transactions()
+    public function transactions($user_id = null)
     {
-        return view('power_system.transactions');
+        if($user_id != null){
+            $user = User::find($user_id);
+            $transactions = $user->transactions;
+        }else{
+            $user = null;
+            $transactions = Transaction::query()->get();
+        }
+        return view('power_system.transactions', compact('transactions','user'));
     }
 
     public function users()
     {
-        return view('power_system.users');
+        $users = User::query()->get();
+        return view('power_system.users', compact('users'));
     }
 
     public function markAsFavourite(Request $request)
@@ -119,7 +136,14 @@ class PowerSystemController extends Controller
         ], [
             'checklist.*.required' => 'This field is required.',
         ]);
-        Cookie::queue('checklist', json_encode($request->checklist), 60 * 24);
+        $checklist = $request->checklist;
+        $v1 = 50 - ($checklist[0] ?? 0);
+        $v2 = 50 - ($checklist[1] ?? 0);
+        $v3 = 10 * ($checklist[2] ?? 0);
+        $v4 = 10 * ($checklist[3] ?? 0);
+        $result = ($v1 + $v2 + $v3 + $v4) * 1.5;
+        $checklist[] = $result;
+        Cookie::queue('checklist', json_encode($checklist), 60 * 24);
         flashSuccess('Checklist saved successfully.');
         return redirect()->back();
     }
@@ -133,5 +157,34 @@ class PowerSystemController extends Controller
         $user->notes = $request->notes;
         $user->save();
         return response()->json(['success' => true]);
+    }
+
+    public function saveTransaction(Request $request)
+    {
+        $request->validate([
+            'stockno' => 'required',
+            'buy_date' => 'required',
+            'buy_price' => 'required',
+            'buy_volume' => 'required',
+            'sell_date' => 'required',
+            'sell_price' => 'required',
+            'sell_volume' => 'required',
+            'difference' => 'required',
+            'remarks' => 'required',
+        ]);
+        $transaction = new Transaction();
+        $transaction->stockno = convertToStockFormat($request->stockno);
+        $transaction->buy_date = $request->buy_date;
+        $transaction->buy_price = $request->buy_price;
+        $transaction->buy_volume = $request->buy_volume;
+        $transaction->sell_date = $request->sell_date;
+        $transaction->sell_price = $request->sell_price;
+        $transaction->sell_volume = $request->sell_volume;
+        $transaction->difference = $request->difference;
+        $transaction->remarks = $request->remarks;
+        $transaction->user_id = auth()->id();
+        $transaction->save();
+        flashSuccess('Transaction saved successfully.');
+        return redirect()->back();
     }
 }

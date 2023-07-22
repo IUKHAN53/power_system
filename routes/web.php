@@ -27,10 +27,11 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/numbers', [PowerSystemController::class, 'numbers'])->name('numbers');
     Route::get('/numbers-details/{number}', [PowerSystemController::class, 'numberDetails'])->name('number-details');
+    Route::post('/save-transaction', [PowerSystemController::class, 'saveTransaction'])->name('save-transaction');
 
     Route::get('/ra_dates', [PowerSystemController::class, 'raDates'])->name('ra_dates');
 
-    Route::get('/transactions', [PowerSystemController::class, 'transactions'])->name('transactions');
+    Route::get('/transactions/{user_id?}', [PowerSystemController::class, 'transactions'])->name('transactions');
 
     Route::get('/users', [PowerSystemController::class, 'users'])->name('users');
 

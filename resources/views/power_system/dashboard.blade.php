@@ -21,7 +21,8 @@
                                             <tr>
                                                 <td style="width:33.3%"><strong>Text A</strong></td>
                                                 <td>
-                                                    <input type="number" pattern="^\d*(\.\d{0,4})?$" name="checklist[]"
+                                                    <input type="number" step="any" pattern="^\d*(\.\d{0,4})?$"
+                                                           name="checklist[]"
                                                            value="{{$checklist[0] ?? ''}}" class="form-control">
                                                     @error('checklist.0')<span>{{$message}}</span>@enderror
                                                 </td>
@@ -30,7 +31,8 @@
                                             <tr>
                                                 <td><strong>Text B</strong></td>
                                                 <td>
-                                                    <input type="number" pattern="^\d*(\.\d{0,4})?$" name="checklist[]"
+                                                    <input type="number" step="any" pattern="^\d*(\.\d{0,4})?$"
+                                                           name="checklist[]"
                                                            value="{{$checklist[1] ?? ''}}" class="form-control">
                                                     @error('checklist.1')<span>{{$message}}</span>@enderror
                                                 </td>
@@ -38,7 +40,8 @@
                                             <tr>
                                                 <td><strong>Text C</strong></td>
                                                 <td>
-                                                    <input type="number" pattern="^\d*(\.\d{0,4})?$" name="checklist[]"
+                                                    <input type="number" step="any" pattern="^\d*(\.\d{0,4})?$"
+                                                           name="checklist[]"
                                                            value="{{$checklist[2] ?? ''}}" class="form-control">
                                                     @error('checklist.2')<span>{{$message}}</span>@enderror
                                                 </td>
@@ -46,15 +49,22 @@
                                             <tr>
                                                 <td><strong>Text D</strong></td>
                                                 <td>
-                                                    <input type="number" pattern="^\d*(\.\d{0,4})?$" name="checklist[]"
+                                                    <input type="number" step="any" pattern="^\d*(\.\d{0,4})?$"
+                                                           name="checklist[]"
                                                            value="{{$checklist[3] ?? ''}}" class="form-control">
                                                     @error('checklist.3')<span>{{$message}}</span>@enderror
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td></td>
                                                 <td class="text-align-left">
                                                     <button class="btn btn-info" type="submit">Result</button>
+                                                </td>
+                                                <td>
+                                                    @if(isset($checklist[4]))
+                                                        <span>
+                                                            Result: {{$checklist[4]}}
+                                                        </span>
+                                                    @endif
                                                 </td>
                                             </tr>
                                             </tbody>

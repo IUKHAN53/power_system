@@ -19,6 +19,12 @@ class Transaction extends Model
         'sell_volume',
         'difference',
         'remarks',
+        'user_id',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
 }

@@ -6,9 +6,9 @@
             <div class="col-md-12 col-lg-12">
                 <div class="card">
                     <div class="d-flex align-items-top row">
-                        <div class="col-md-12 col-lg-12 order-2 order-md-1" >
-                            <div class="card-body align-items-top" >
-                                <h5 class="card-header">Transaction Record</h5>
+                        <div class="col-md-12 col-lg-12 order-2 order-md-1">
+                            <div class="card-body align-items-top">
+                                <h5 class="card-header">Transaction Records {{($user)?'For '. $user->name:''}}</h5>
                                 <div class="table-responsive">
                                     <table class="table table-striped table-bordered table-hover">
                                         <thead>
@@ -26,85 +26,41 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-
-                                        <tr>
-                                            <td class="text-center quick-edit"><input type="text" class="quick-edit-input text-center flatpickr-date flatpickr-input active"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="text-center quick-edit"><input type="text" class="quick-edit-input text-center"><span class="quick-edit-text">0001</span></td>
-                                            <td class="text-center quick-edit"><input type="text" class="quick-edit-input text-center"><span class="quick-edit-text">9.08</span></td>
-                                            <td class="text-center quick-edit"><input type="text" class="quick-edit-input text-center"><span class="quick-edit-text">1000</span></td>
-                                            <td class="text-center quick-edit"><input type="text" class="quick-edit-input text-center flatpickr-date flatpickr-input active"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="text-center quick-edit"><input type="text" class="quick-edit-input text-center"><span class="quick-edit-text">9.08</span></td>
-                                            <td class="text-center quick-edit"><input type="text" class="quick-edit-input text-center"><span class="quick-edit-text">1000</span></td>
-                                            <td class="text-center quick-edit"><input type="text" class="quick-edit-input"><span class="quick-edit-text">0.00%</span></td>
-                                            <td class="text-center quick-edit"><input type="text" class="quick-edit-input"><span class="quick-edit-text">Admin</span></td>
-                                            <td class="quick-edit"><input type="text" class="quick-edit-input"><span class="quick-edit-text">Text</span></td>
-                                        </tr>
-
-                                        <tr>
-                                            <td class="text-center quick-edit"><input type="text" class="quick-edit-input text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="text-center quick-edit"><input type="text" class="quick-edit-input text-center"><span class="quick-edit-text">0001</span></td>
-                                            <td class="text-center quick-edit"><input type="text" class="quick-edit-input text-center"><span class="quick-edit-text">9.08</span></td>
-                                            <td class="text-center quick-edit"><input type="text" class="quick-edit-input text-center"><span class="quick-edit-text">1000</span></td>
-                                            <td class="text-center quick-edit"><input type="text" class="quick-edit-input text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="text-center quick-edit"><input type="text" class="quick-edit-input text-center"><span class="quick-edit-text">9.08</span></td>
-                                            <td class="text-center quick-edit"><input type="text" class="quick-edit-input text-center"><span class="quick-edit-text">1000</span></td>
-                                            <td class="text-center quick-edit"><input type="text" class="quick-edit-input text-center"><span class="quick-edit-text">0.00%</span></td>
-                                            <td class="text-center quick-edit"><input type="text" class="quick-edit-input"><span class="quick-edit-text">Admin</span></td>
-                                            <td class="quick-edit"><input type="text" class="quick-edit-input"><span class="quick-edit-text">Text</span></td>
-                                        </tr>
-
-                                        <tr>
-                                            <td class="text-center quick-edit"><input type="text" class="quick-edit-input text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="text-center quick-edit"><input type="text" class="quick-edit-input text-center"><span class="quick-edit-text">0001</span></td>
-                                            <td class="text-center quick-edit"><input type="text" class="quick-edit-input text-center"><span class="quick-edit-text">9.08</span></td>
-                                            <td class="text-center quick-edit"><input type="text" class="quick-edit-input text-center"><span class="quick-edit-text">1000</span></td>
-                                            <td class="text-center quick-edit"><input type="text" class="quick-edit-input text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="text-center quick-edit"><input type="text" class="quick-edit-input text-center"><span class="quick-edit-text">9.08</span></td>
-                                            <td class="text-center quick-edit"><input type="text" class="quick-edit-input text-center"><span class="quick-edit-text">1000</span></td>
-                                            <td class="text-center quick-edit"><input type="text" class="quick-edit-input text-center"><span class="quick-edit-text">0.00%</span></td>
-                                            <td class="text-center quick-edit"><input type="text" class="quick-edit-input"><span class="quick-edit-text">Admin</span></td>
-                                            <td class="quick-edit"><input type="text" class="quick-edit-input"><span class="quick-edit-text">Text</span></td>
-                                        </tr>
-
-                                        <tr>
-                                            <td class="text-center quick-edit"><input type="text" class="quick-edit-input text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="text-center quick-edit"><input type="text" class="quick-edit-input text-center"><span class="quick-edit-text">0001</span></td>
-                                            <td class="text-center quick-edit"><input type="text" class="quick-edit-input text-center"><span class="quick-edit-text">9.08</span></td>
-                                            <td class="text-center quick-edit"><input type="text" class="quick-edit-input text-center"><span class="quick-edit-text">1000</span></td>
-                                            <td class="text-center quick-edit"><input type="text" class="quick-edit-input text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="text-center quick-edit"><input type="text" class="quick-edit-input text-center"><span class="quick-edit-text">9.08</span></td>
-                                            <td class="text-center quick-edit"><input type="text" class="quick-edit-input text-center"><span class="quick-edit-text">1000</span></td>
-                                            <td class="text-center quick-edit"><input type="text" class="quick-edit-input text-center"><span class="quick-edit-text">0.00%</span></td>
-                                            <td class="text-center quick-edit"><input type="text" class="quick-edit-input"><span class="quick-edit-text">Admin</span></td>
-                                            <td class="quick-edit"><input type="text" class="quick-edit-input"><span class="quick-edit-text">Text</span></td>
-                                        </tr>
-
-                                        <tr>
-                                            <td class="text-center quick-edit"><input type="text" class="quick-edit-input text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="text-center quick-edit"><input type="text" class="quick-edit-input text-center"><span class="quick-edit-text">0001</span></td>
-                                            <td class="text-center quick-edit"><input type="text" class="quick-edit-input text-center"><span class="quick-edit-text">9.08</span></td>
-                                            <td class="text-center quick-edit"><input type="text" class="quick-edit-input text-center"><span class="quick-edit-text">1000</span></td>
-                                            <td class="text-center quick-edit"><input type="text" class="quick-edit-input text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="text-center quick-edit"><input type="text" class="quick-edit-input text-center"><span class="quick-edit-text">9.08</span></td>
-                                            <td class="text-center quick-edit"><input type="text" class="quick-edit-input text-center"><span class="quick-edit-text">1000</span></td>
-                                            <td class="text-center quick-edit"><input type="text" class="quick-edit-input text-center"><span class="quick-edit-text">0.00%</span></td>
-                                            <td class="text-center quick-edit"><input type="text" class="quick-edit-input"><span class="quick-edit-text">Admin</span></td>
-                                            <td class="quick-edit"><input type="text" class="quick-edit-input"><span class="quick-edit-text">Text</span></td>
-                                        </tr>
-
-                                        <tr>
-                                            <td class="text-center quick-edit"><input type="text" class="quick-edit-input text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="text-center quick-edit"><input type="text" class="quick-edit-input text-center"><span class="quick-edit-text">0001</span></td>
-                                            <td class="text-center quick-edit"><input type="text" class="quick-edit-input text-center"><span class="quick-edit-text">9.08</span></td>
-                                            <td class="text-center quick-edit"><input type="text" class="quick-edit-input text-center"><span class="quick-edit-text">1000</span></td>
-                                            <td class="text-center quick-edit"><input type="text" class="quick-edit-input text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="text-center quick-edit"><input type="text" class="quick-edit-input text-center"><span class="quick-edit-text">9.08</span></td>
-                                            <td class="text-center quick-edit"><input type="text" class="quick-edit-input text-center"><span class="quick-edit-text">1000</span></td>
-                                            <td class="text-center quick-edit"><input type="text" class="quick-edit-input text-center"><span class="quick-edit-text">0.00%</span></td>
-                                            <td class="text-center quick-edit"><input type="text" class="quick-edit-input"><span class="quick-edit-text">Admin</span></td>
-                                            <td class="quick-edit"><input type="text" class="quick-edit-input"><span class="quick-edit-text">Text</span></td>
-                                        </tr>
-
+                                        @foreach($transactions as $item)
+                                            <tr>
+                                                <td class="text-center quick-edit">
+                                                    <span class="quick-edit-text">{{$item->buy_date}}</span>
+                                                </td>
+                                                <td class="text-center quick-edit">
+                                                    <span
+                                                        class="quick-edit-text">{{extractValueFromStockFormat($item->stockno)}}</span>
+                                                </td>
+                                                <td class="text-center quick-edit">
+                                                    <span class="quick-edit-text">{{$item->buy_price}}</span>
+                                                </td>
+                                                <td class="text-center quick-edit">
+                                                    <span class="quick-edit-text">{{$item->buy_volume}}</span>
+                                                </td>
+                                                <td class="text-center quick-edit">
+                                                    <span class="quick-edit-text">{{$item->sell_date}}</span>
+                                                </td>
+                                                <td class="text-center quick-edit">
+                                                    <span class="quick-edit-text">{{$item->sell_price}}</span>
+                                                </td>
+                                                <td class="text-center quick-edit">
+                                                    <span class="quick-edit-text">{{$item->sell_volume}}</span>
+                                                </td>
+                                                <td class="text-center quick-edit">
+                                                    <span class="quick-edit-text">{{$item->difference}}</span>
+                                                </td>
+                                                <td class="text-center quick-edit">
+                                                    <span class="quick-edit-text">{{$item->user->name}}</span>
+                                                </td>
+                                                <td class="quick-edit">
+                                                    <span class="quick-edit-text">{{$item->remarks}}</span>
+                                                </td>
+                                            </tr>
+                                        @endforeach
                                         </tbody>
                                     </table>
                                 </div>
@@ -115,8 +71,6 @@
                 </div>
             </div>
             <!--/ Number List -->
-
-
 
 
         </div>

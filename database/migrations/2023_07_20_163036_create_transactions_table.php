@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('sell_volume')->nullable();
             $table->string('difference')->nullable();
             $table->string('remarks')->nullable();
+            $table->foreignId('user_id')->nullable();
             $table->timestamps();
         });
     }
