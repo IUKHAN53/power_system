@@ -21,7 +21,6 @@ class User extends Authenticatable
         self::ROLE_ADMIN => 'Admin',
         self::ROLE_MEMBER => 'Member',
         self::ROLE_USER => 'User',
-        self::ROLE_GUEST => 'Guest',
     ];
 
     /**
@@ -29,11 +28,7 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
+    protected $guarded = [];
 
     /**
      * The attributes that should be hidden for serialization.

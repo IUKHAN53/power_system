@@ -78,13 +78,89 @@ function getNumberFromStock($string)
 function getReadableDay($day)
 {
     switch ($day) {
+        case null:
+            return 'N/A';
         case 0:
             return 'Today';
         case 1:
             return 'Tomorrow';
-        case null:
-            return 'N/A';
         default:
             return $day . ' Days';
     }
+}
+
+function calculatePercentageChange($valueD3, $valueD2)
+{
+    if ($valueD3 == 0) {
+        return "--";
+    } else {
+        return ($valueD3 - $valueD2) / $valueD2;
+    }
+}
+
+function calculatePattern($valueB3, $valueD2, $valueD3)
+{
+    if ($valueB3 == 0) {
+        return "----";
+    } else {
+        if ($valueB3 >= $valueD2 && $valueD3 >= $valueB3) {
+            return "UU";
+        } elseif ($valueB3 >= $valueD2 && $valueD3 < $valueB3) {
+            return "UF";
+        } elseif ($valueB3 < $valueD2 && $valueD3 >= $valueB3) {
+            return "FU";
+        } else {
+            return "FF";
+        }
+    }
+}
+
+function calculateResultDiff($valueE7, $valueE8)
+{
+    if (($valueE7 < 0 && $valueE8 < 0) || ($valueE7 > 0 && $valueE8 > 0)) {
+        return "Same";
+    } else {
+        return "Different";
+    }
+}
+
+function calculatePattern2($valueB4, $valueB3, $valueD3, $valueD4)
+{
+    if ($valueB4 == 0) {
+        return "----";
+    } else {
+        if ($valueB4 >= $valueD3 && $valueD4 >= $valueB4) {
+            return "UU";
+        } elseif ($valueB4 >= $valueD3 && $valueD4 < $valueB4) {
+            return "UF";
+        } elseif ($valueD4 < $valueB3 && $valueB4 >= $valueD4) {
+            return "FU";
+        } else {
+            return "FF";
+        }
+    }
+}
+
+function calculateResultPattern($valueE7, $valueE8)
+{
+    if ($valueE8 > $valueE7) {
+        return "U";
+    } else {
+        return "F";
+    }
+}
+
+function compareDates($date1, $date2)
+{
+    return \Carbon\Carbon::parse($date1)->toDateString() == \Carbon\Carbon::parse($date2)->toDateString();
+}
+
+function getNumberRemarks($number){
+    $remarks = \App\Models\NumberRemarks::where('stockno', convertToStockFormat($number))->where('user_id', auth()->id())->first();
+    if($remarks){
+        return $remarks->remarks;
+    }else{
+        return '';
+    }
+
 }

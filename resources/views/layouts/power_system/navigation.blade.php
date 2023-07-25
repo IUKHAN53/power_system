@@ -31,21 +31,21 @@
                                 <span class="align-middle">English</span>
                             </a>
                         </li>
-                        <li>
-                            <a class="dropdown-item" href="javascript:void(0);" data-language="fr">
-                                <span class="align-middle">French</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="javascript:void(0);" data-language="de">
-                                <span class="align-middle">German</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="javascript:void(0);" data-language="pt">
-                                <span class="align-middle">Portuguese</span>
-                            </a>
-                        </li>
+{{--                        <li>--}}
+{{--                            <a class="dropdown-item" href="javascript:void(0);" data-language="fr">--}}
+{{--                                <span class="align-middle">French</span>--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
+{{--                        <li>--}}
+{{--                            <a class="dropdown-item" href="javascript:void(0);" data-language="de">--}}
+{{--                                <span class="align-middle">German</span>--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
+{{--                        <li>--}}
+{{--                            <a class="dropdown-item" href="javascript:void(0);" data-language="pt">--}}
+{{--                                <span class="align-middle">Portuguese</span>--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
                     </ul>
                 </li>
                 <!--/ Language -->
@@ -71,75 +71,7 @@
                         <i class="mdi mdi-view-grid-plus-outline mdi-24px"></i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-end py-0">
-                        <div class="dropdown-menu-header border-bottom">
-                            <div class="dropdown-header d-flex align-items-center py-3">
-                                <h5 class="text-body mb-0 me-auto">Calculator</h5>
-                                <a
-                                    href="javascript:void(0)"
-                                    class="dropdown-shortcuts-add text-muted"
-                                    data-bs-toggle="tooltip"
-                                    data-bs-placement="top"
-                                    title="Add shortcuts"
-                                ><i class="mdi mdi-view-grid-plus-outline mdi-24px"></i
-                                    ></a>
-                            </div>
-                        </div>
-                        <div class="dropdown-shortcuts-list scrollable-container">
-                            <div class="text-nowrap">
-                                <table class="table table-striped table-hover table-bordered table-sm">
-                                    <tbody>
-                                    <tr>
-                                        <td style="width:33.3%">Text A</td>
-                                        <td style="width:33.3%"><input type="text" class="form-control"
-                                                                       value="1.00%"></td>
-                                        <td style="width:33.3%">0.00</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Text B</td>
-                                        <td><input type="text" class="form-control" value="1.00%"></td>
-                                        <td>0.00</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Text C</td>
-                                        <td><input type="text" class="form-control" value="1.00%"></td>
-                                        <td>0.00</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Text D</td>
-                                        <td><input type="text" class="form-control" value="1.00%"></td>
-                                        <td>0.00</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Text E</td>
-                                        <td><input type="text" class="form-control" value="1.00%"></td>
-                                        <td>0.00</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">
-                                            <button class="btn btn-warning btn-xs">Reset</button>
-                                        </td>
-                                        <td class="text-center"><input type="text" class="form-control"
-                                                                       value="43.25"></td>
-                                        <td class="text-center">
-                                            <button class="btn btn-info btn-xs">Calc</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="3">
-                                            <div class="row">
-                                                <div class="col-lg-6 text-center">
-                                                    <button class="btn btn-danger btn-sm col-lg-8">-</button>
-                                                </div>
-                                                <div class="col-lg-6 text-center">
-                                                    <button class="btn btn-info btn-sm col-lg-8">+</button>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
+                        @include('power_system.calculator')
                     </div>
                 </li>
                 <!-- Quick links -->
@@ -373,48 +305,48 @@
                             <div class="dropdown-divider"></div>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="pages-profile-user.html">
+                            <a class="dropdown-item" href="#">
                                 <i class="mdi mdi-account-outline me-2"></i>
                                 <span class="align-middle">My Profile</span>
                             </a>
                         </li>
-                        <li>
-                            <a class="dropdown-item" href="pages-account-settings-account.html">
-                                <i class="mdi mdi-cog-outline me-2"></i>
-                                <span class="align-middle">Settings</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="pages-account-settings-billing.html">
-                                <span class="d-flex align-items-center align-middle">
-                                    <i class="flex-shrink-0 mdi mdi-credit-card-outline me-2"></i>
-                                    <span class="flex-grow-1 align-middle">Billing</span>
-                                    <span
-                                        class="flex-shrink-0 badge badge-center rounded-pill bg-danger w-px-20 h-px-20">4</span>
-                                </span>
-                            </a>
-                        </li>
-                        <li>
-                            <div class="dropdown-divider"></div>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="pages-help-center-landing.html">
-                                <i class="mdi mdi-lifebuoy me-2"></i>
-                                <span class="align-middle">Help</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="pages-faq.html">
-                                <i class="mdi mdi-help-circle-outline me-2"></i>
-                                <span class="align-middle">FAQ</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="pages-pricing.html">
-                                <i class="mdi mdi-currency-usd me-2"></i>
-                                <span class="align-middle">Pricing</span>
-                            </a>
-                        </li>
+{{--                        <li>--}}
+{{--                            <a class="dropdown-item" href="pages-account-settings-account.html">--}}
+{{--                                <i class="mdi mdi-cog-outline me-2"></i>--}}
+{{--                                <span class="align-middle">Settings</span>--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
+{{--                        <li>--}}
+{{--                            <a class="dropdown-item" href="pages-account-settings-billing.html">--}}
+{{--                                <span class="d-flex align-items-center align-middle">--}}
+{{--                                    <i class="flex-shrink-0 mdi mdi-credit-card-outline me-2"></i>--}}
+{{--                                    <span class="flex-grow-1 align-middle">Billing</span>--}}
+{{--                                    <span--}}
+{{--                                        class="flex-shrink-0 badge badge-center rounded-pill bg-danger w-px-20 h-px-20">4</span>--}}
+{{--                                </span>--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
+{{--                        <li>--}}
+{{--                            <div class="dropdown-divider"></div>--}}
+{{--                        </li>--}}
+{{--                        <li>--}}
+{{--                            <a class="dropdown-item" href="pages-help-center-landing.html">--}}
+{{--                                <i class="mdi mdi-lifebuoy me-2"></i>--}}
+{{--                                <span class="align-middle">Help</span>--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
+{{--                        <li>--}}
+{{--                            <a class="dropdown-item" href="pages-faq.html">--}}
+{{--                                <i class="mdi mdi-help-circle-outline me-2"></i>--}}
+{{--                                <span class="align-middle">FAQ</span>--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
+{{--                        <li>--}}
+{{--                            <a class="dropdown-item" href="pages-pricing.html">--}}
+{{--                                <i class="mdi mdi-currency-usd me-2"></i>--}}
+{{--                                <span class="align-middle">Pricing</span>--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
                         <li>
                             <div class="dropdown-divider"></div>
                         </li>

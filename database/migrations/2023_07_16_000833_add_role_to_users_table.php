@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->smallInteger('role')->default(2);
+            $table->date('start_date')->nullable();
+            $table->date('expiry_date')->nullable();
+            $table->string('mobile')->nullable();
+            $table->smallInteger('status')->default(1);
             $table->text('notes')->nullable();
         });
     }
@@ -25,6 +29,11 @@ return new class extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->dropColumn(['role']);
             $table->dropColumn(['notes']);
+            $table->dropColumn(['mobile']);
+            $table->dropColumn(['expiry_date']);
+            $table->dropColumn(['start_date']);
+            $table->dropColumn(['status']);
+
         });
     }
 };

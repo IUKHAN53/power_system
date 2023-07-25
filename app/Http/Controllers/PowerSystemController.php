@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\NumberRemarks;
+use App\Models\RaDate;
 use App\Models\Transaction;
 use App\Models\User;
 use Carbon\Carbon;
@@ -45,7 +47,7 @@ class PowerSystemController extends Controller
         $data = [];
         foreach ($tablesStartingWithHKG as $table) {
             $next = DB::table('ra_dates')->where('stockno', convertToStockFormat($table))->pluck('next')->toArray();
-            $to_go = 0;
+            $to_go = null;
             if (isset($next[0]) && $next[0] != '0000-00-00') {
                 $to_go = Carbon::parse($next[0])->diffInDays(Carbon::now());
             }
@@ -90,26 +92,44 @@ class PowerSystemController extends Controller
 
     public function raDates()
     {
+        $tables = DB::connection()->getDoctrineSchemaManager()->listTableNames();
 
-        return view('power_system.ra_dates');
+        $tablesStartingWithHKG = array_filter($tables, function ($tableName) {
+            return str_starts_with($tableName, 'hkg');
+        });
+//        $tablesStartingWithHKG = array_slice($tablesStartingWithHKG, 0, 4);
+        $data = [];
+        foreach ($tablesStartingWithHKG as $table) {
+            $ra_data = DB::table('ra_dates')->where('stockno', convertToStockFormat($table))->first();
+            if ($ra_data)
+                $data[$table] = $ra_data;
+        }
+        return view('power_system.ra_dates', compact('data'));
     }
 
     public function transactions($user_id = null)
     {
-        if($user_id != null){
+        if ($user_id != null) {
             $user = User::find($user_id);
             $transactions = $user->transactions;
-        }else{
+        } else {
             $user = null;
             $transactions = Transaction::query()->get();
         }
-        return view('power_system.transactions', compact('transactions','user'));
+        return view('power_system.transactions', compact('transactions', 'user'));
     }
 
     public function users()
     {
         $users = User::query()->get();
         return view('power_system.users', compact('users'));
+    }
+
+    public function updateUser(Request $request, $id)
+    {
+        $user = User::find($id);
+        $user->update($request->except(['_token', '_method']));
+        return redirect()->back()->with('success', 'User updated successfully.');
     }
 
     public function markAsFavourite(Request $request)
@@ -186,5 +206,55 @@ class PowerSystemController extends Controller
         $transaction->save();
         flashSuccess('Transaction saved successfully.');
         return redirect()->back();
+    }
+
+    public function updateField(Request $request)
+    {
+        if ($request->from == 'ra_dates') {
+            $date = Carbon::parse($request->value)->format('Y-m-d');
+            $number = convertToStockFormat('hkg' . $request->number);
+            RaDate::query()->updateOrCreate([
+                'stockno' => $number,
+            ], [
+                'stockno' => $number,
+                $request->field => $date,
+            ]);
+            return response()->json(['success' => true]);
+        } elseif ($request->from == 'transactions'){
+            $transaction = Transaction::query()->find($request->id);
+            $transaction->{$request->field} = $request->value;
+            $transaction->save();
+            return response()->json(['success' => true]);
+        } else {
+            DB::table($request->table)->where('stockno', $request->stockno)->update([$request->column => $request->value]);
+        }
+    }
+
+    public function verifyDates(Request $request)
+    {
+        $number = $request->number;
+        $ra_date = RaDate::query()->where('stockno', convertToStockFormat($number))->first();
+        $next = $ra_date->next;
+        for ($i = 1; $i <= 12; $i++) {
+            $next_date = $ra_date->{'last' . $i};
+            $ra_date->{'last' . $i} = $next;
+            $next = $next_date;
+        }
+        $ra_date->save();
+        return back();
+    }
+
+    public function saveNumberRemarks(Request $request){
+        $number = convertToStockFormat($request->number);
+        $remarks = $request->remarks;
+        $user = auth()->user();
+        NumberRemarks::query()->updateOrCreate([
+            'stockno' => $number,
+            'user_id' => $user->id,
+        ], [
+            'remarks' => $remarks,
+        ]);
+        return response()->json(['success' => true]);
+
     }
 }

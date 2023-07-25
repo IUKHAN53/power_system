@@ -38,8 +38,8 @@
 
     $(".flatpickr-date").each(function () {
         $(this).flatpickr({
-            altInput: true,
-            altFormat: 'd/m/Y',
+            // altInput: true,
+            // altFormat: 'd/m/Y',
             dateFormat: 'Y-m-d'
         });
     });
@@ -50,7 +50,7 @@
     var dt_recent_ra = $('#recent-ra');
     table_recent_ra = dt_recent_ra.DataTable(
         {
-            searching: false, paging: false, info: false,
+            searching: true, paging: true, info: false,
             "order": [[1, "asc"]],
             "columnDefs": [{
                 "targets": 0,
@@ -69,7 +69,7 @@
     var dt_ra_dates = $('#table-ra-dates');
     table_ra_dates = dt_ra_dates.DataTable(
         {
-            searching: false, paging: false, info: false,
+            searching: true, paging: true, info: false,
             "columnDefs": [{
                 "targets": 0,
                 "orderable": false
@@ -84,4 +84,34 @@
                 }]
         }
     );
+
+    //     quick edit
+    $('.quick-edit-input').hide();
+    $(".quick-edit").dblclick(function () {
+        var inp = $(this).find(".quick-edit-input").show();
+        $(this).find(".quick-edit-text").hide();
+        inp.val($(this).find(".quick-edit-text").text());
+        inp.parent().attr("style", "padding:0!important");
+        inp.show();
+        inp.focus();
+    });
+
+    function dataChanged(el, id, field, from = 'transactions') {
+        let value = el.value;
+        let data = {
+            id: id,
+            field: field,
+            value: value,
+            from: from,
+        }
+        $.ajax({
+            url: "{{route('update-data-field')}}",
+            type: "POST",
+            data: data,
+            success: function (response) {
+                console.log(response);
+            }
+        })
+    }
+
 </script>

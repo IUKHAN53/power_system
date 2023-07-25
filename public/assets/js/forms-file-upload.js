@@ -29,20 +29,20 @@
   // Basic Dropzone
   // --------------------------------------------------------------------
 
-  const myDropzone = new Dropzone('#dropzone-basic', {
-    previewTemplate: previewTemplate,
-    parallelUploads: 1,
-    maxFilesize: 5,
-    addRemoveLinks: true,
-    maxFiles: 1
-  });
-
-  // Multiple Dropzone
-  // --------------------------------------------------------------------
-  const dropzoneMulti = new Dropzone('#dropzone-multi', {
-    previewTemplate: previewTemplate,
-    parallelUploads: 1,
-    maxFilesize: 5,
-    addRemoveLinks: true
-  });
+  // const myDropzone = new Dropzone('#dropzone-basic', {
+  //   previewTemplate: previewTemplate,
+  //   parallelUploads: 1,
+  //   maxFilesize: 5,
+  //   addRemoveLinks: true,
+  //   maxFiles: 1
+  // });
+  //
+  // // Multiple Dropzone
+  // // --------------------------------------------------------------------
+  // const dropzoneMulti = new Dropzone('#dropzone-multi', {
+  //   previewTemplate: previewTemplate,
+  //   parallelUploads: 1,
+  //   maxFilesize: 5,
+  //   addRemoveLinks: true
+  // });
 })();

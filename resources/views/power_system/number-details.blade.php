@@ -1,5 +1,5 @@
 @extends('layouts.backend')
-@section('title', 'Numbers List')
+@section('title', 'Number '.str_replace('hkg', '', $number))
 @section('content')
     <div class="container-xxl flex-grow-1 container-p-y">
         <div class="row gy-4">
@@ -25,8 +25,29 @@
                                             <th>Pattern</th>
                                             </thead>
                                             <tbody>
+                                            @php
+                                                $result_diff = '--';
+                                                $result_pattern = '--';
+                                            @endphp
                                             @foreach($data as $item)
-                                                @php($bold_style = \Carbon\Carbon::parse($item->date)->toDateString()== \Carbon\Carbon::parse($date_ra[$key])->toDateString() ? 'font-weight: bold;' : '')
+                                                @php
+                                                    $bold_style = compareDates($item->date, $date_ra[$key]) ? 'font-weight: bold;' : '';
+                                                    if($loop->first){
+                                                        $difference = '';
+                                                        $pattern = '--U';
+                                                    }else if ($loop->index == 1){
+                                                        $difference = number_format(calculatePercentageChange($data[$loop->index - 1]->close, $item->close),2) . '%';
+                                                        $pattern = calculatePattern($item->open, $data[$loop->index - 1]->close, $item->close);
+                                                    }else{
+                                                        $difference = number_format(calculatePercentageChange($data[$loop->index - 1]->close, $item->close),2) . '%';
+                                                        $pattern = calculatePattern2($item->open, $data[$loop->index - 1]->open, $data[$loop->index - 1]->close, $item->close);
+                                                    }
+                                                    if(compareDates($item->date, $date_ra[$key])){
+                                                        $nextDiff = number_format(calculatePercentageChange($item->close, $data[$loop->index + 1]->close),2) . '%';
+                                                        $result_diff = calculateResultDiff($difference, $nextDiff);
+                                                        $result_pattern = $nextDiff > $difference ? 'U' : 'F';
+                                                    }
+                                                @endphp
                                                 <tr>
                                                     <td style="{{$bold_style}}">{{\Carbon\Carbon::parse($item->date)->toDateString()}}</td>
                                                     <td style="{{$bold_style}}">{{$item->open}}</td>
@@ -34,14 +55,14 @@
                                                     <td style="{{$bold_style}}">{{$item->low}}</td>
                                                     <td style="{{$bold_style}}">{{$item->close}}</td>
                                                     <td style="{{$bold_style}}">{{$item->volume}}</td>
-                                                    <td style="{{$bold_style}}">0%</td>
-                                                    <td style="{{$bold_style}}">0</td>
+                                                    <td style="{{$bold_style}}">{{$difference}}</td>
+                                                    <td style="{{$bold_style}}">{{$pattern}}</td>
                                                 </tr>
                                             @endforeach
                                             <tr>
                                                 <td colspan="6" style="text-align: right;">Result</td>
-                                                <td>Same</td>
-                                                <td>U</td>
+                                                <td>{{$result_diff}}</td>
+                                                <td>{{$result_pattern}}</td>
                                             </tr>
                                             </tbody>
                                         </table>
@@ -56,19 +77,21 @@
                                     <div class="col-md">
                                         <div class="form-floating form-floating-outline">
                                             <input
+                                                value="{{getNumberRemarks($number)}}"
                                                 type="text"
                                                 class="form-control"
-                                                id="floatingInput"
+                                                id="remarks"
                                                 placeholder="Remarks of 0001"
                                                 aria-describedby="floatingInputHelp"/>
-                                            <label for="floatingInput">Remarks of 0001</label>
+                                            <label for="remarks">Remarks of {{str_replace('hkg', '', $number)}}</label>
                                             <div id="floatingInputHelp" class="form-text">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-lg-1">
-                                    <button class="btn btn-info mt-1"><i class="fa fa-save"></i> Save</button>
+                                    <button class="btn btn-info mt-1" onclick="saveRemarks('{{$number}}')">
+                                        <i class="fa fa-save"></i> Save</button>
                                 </div>
 
                             </div>
@@ -108,7 +131,8 @@
                                                 <input type="hidden" name="stockno" value="{{$number}}">
                                                 <td class="text-center">
                                                     <input type="text" placeholder="DD-MM-YYYY" name="buy_date"
-                                                           class="form-control text-center flatpickr-input active flatpickr-date" value="{{now()->toDateString()}}"
+                                                           class="form-control text-center flatpickr-input active flatpickr-date"
+                                                           value="{{now()->toDateString()}}"
                                                            @error('buy_date') style="border-color: #FA787E;" @enderror>
                                                 </td>
                                                 <td class="text-center">
@@ -123,7 +147,8 @@
                                                 </td>
                                                 <td class="text-center">
                                                     <input type="text" placeholder="DD-MM-YYYY" name="sell_date"
-                                                           class="form-control text-center flatpickr-input active flatpickr-date" value="{{now()->toDateString()}}"
+                                                           class="form-control text-center flatpickr-input active flatpickr-date"
+                                                           value="{{now()->toDateString()}}"
                                                            @error('sell_date') style="border-color: #FA787E;" @enderror>
                                                 </td>
                                                 <td class="text-center">
@@ -152,14 +177,62 @@
                                         </form>
                                         @foreach($transactions as $item)
                                             <tr>
-                                                <td class="quick-edit text-center">{{$item->buy_date}}</td>
-                                                <td class="quick-edit text-center">{{$item->buy_price}}</td>
-                                                <td class="quick-edit text-center">{{$item->buy_volume}}</td>
-                                                <td class="quick-edit text-center">{{$item->sell_date}}</td>
-                                                <td class="quick-edit text-center">{{$item->sell_price}}</td>
-                                                <td class="quick-edit text-center">{{$item->sell_volume}}</td>
-                                                <td class="quick-edit text-center">{{$item->difference}}</td>
-                                                <td class="quick-edit text-center">{{$item->remarks}}</td>
+                                                <td class="quick-edit text-center">
+                                                    <input onchange="dataChanged(this, '{{$item->id}}', 'buy_date')"
+                                                           class="quick-edit-input flatpickr-input flatpickr-date text-center "
+                                                           type="text">
+                                                    <span
+                                                        class="quick-edit-text">{{ $item->buy_date }}</span>
+                                                </td>
+                                                <td class="quick-edit text-center">
+                                                    <input onchange="dataChanged(this, '{{$item->id}}', 'buy_price')"
+                                                           class="quick-edit-input text-center "
+                                                           type="text">
+                                                    <span
+                                                        class="quick-edit-text">{{ $item->buy_price }}</span>
+                                                </td>
+                                                <td class="quick-edit text-center">
+                                                    <input onchange="dataChanged(this, '{{$item->id}}', 'buy_volume')"
+                                                           class="quick-edit-input text-center "
+                                                           type="text">
+                                                    <span
+                                                        class="quick-edit-text">{{ $item->buy_volume }}</span>
+                                                </td>
+                                                <td class="quick-edit text-center">
+                                                    <input onchange="dataChanged(this, '{{$item->id}}', 'sell_date')"
+                                                           class="quick-edit-input flatpickr-input flatpickr-date text-center "
+                                                           type="text">
+                                                    <span
+                                                        class="quick-edit-text dates">{{ $item->sell_date }}</span>
+                                                </td>
+                                                <td class="quick-edit text-center">
+                                                    <input onchange="dataChanged(this, '{{$item->id}}', 'sell_price')"
+                                                           class="quick-edit-input text-center "
+                                                           type="text">
+                                                    <span
+                                                        class="quick-edit-text">{{ $item->sell_price }}</span>
+                                                </td>
+                                                <td class="quick-edit text-center">
+                                                    <input onchange="dataChanged(this, '{{$item->id}}', 'sell_volume')"
+                                                           class="quick-edit-input text-center "
+                                                           type="text">
+                                                    <span
+                                                        class="quick-edit-text dates">{{ $item->difference }}</span>
+                                                </td>
+                                                <td class="quick-edit text-center">
+                                                    <input onchange="dataChanged(this, '{{$item->id}}', 'difference')"
+                                                           class="quick-edit-input text-center "
+                                                           type="text">
+                                                    <span
+                                                        class="quick-edit-text dates">{{ $item->remarks }}</span>
+                                                </td>
+                                                <td class="quick-edit text-center">
+                                                    <input onchange="dataChanged(this, '{{$item->id}}', 'remarks')"
+                                                           class="quick-edit-input text-center "
+                                                           type="text">
+                                                    <span
+                                                        class="quick-edit-text dates">{{ $item->sell_volume }}</span>
+                                                </td>
                                             </tr>
                                         @endforeach
                                         </tbody>
@@ -172,5 +245,22 @@
             </div>
         </div>
     </div>
+
+    <script>
+        function saveRemarks(number) {
+            let remarks = $('#remarks').val();
+            $.ajax({
+                url: "{{route('save-remarks')}}",
+                type: "POST",
+                data: {
+                    number: number,
+                    remarks: remarks,
+                },
+                success: function (response) {
+                    console.log(response);
+                }
+            });
+        }
+    </script>
 @endsection
 

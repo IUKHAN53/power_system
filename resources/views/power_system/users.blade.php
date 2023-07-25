@@ -13,45 +13,78 @@
                                     <table class="table table-striped table-bordered table-hover" id="user-table">
                                         <thead>
                                         <tr>
-                                            <th>ID</th>
-                                            <th>User ID</th>
-                                            <th>Name</th>
-                                            <th>Email</th>
-                                            <th>Mobile</th>
-                                            <th>Register date</th>
-                                            <th>User Type</th>
-                                            <th>Start Date</th>
-                                            <th>Expiry Date</th>
-                                            <th>User Status</th>
+                                            <th class="text-center">ID</th>
+                                            <th class="text-center">User ID</th>
+                                            <th class="text-center">Name</th>
+                                            <th class="text-center">Email</th>
+                                            <th class="text-center">Mobile</th>
+                                            <th class="text-center">Register date</th>
+                                            <th class="text-center">User Type</th>
+                                            <th class="text-center">Start Date</th>
+                                            <th class="text-center">Expiry Date</th>
+                                            <th class="text-center">User Status</th>
                                             <th class="text-center">Action</th>
                                         </tr>
                                         </thead>
                                         <tbody>
                                         @foreach($users as $user)
-                                            <tr>
-                                                <td class="text-center">{{$user->id}}</td>
-                                                <td class="text-center">User-{{$user->id}}</td>
-                                                <td class="text-center">{{$user->name}}</td>
-                                                <td class="text-center">{{$user->email}}</td>
-                                                <td class="text-center">{{$user->mobile}}</td>
-                                                <td class="text-center">{{$user->created_at}}</td>
-                                                <td class="text-center">{{\App\Models\User::ROLES[$user->role]}}</td>
-                                                <td class="text-center"></td>
-                                                <td class="text-center"></td>
-                                                <td class="text-center quick-edit">
-                                                    <select class="quick-edit-input text-center">
-                                                        <option>Enabled</option>
-                                                        <option>Disabled</option>
-                                                    </select><span class="quick-edit-text">Enabled</span>
-                                                </td>
-                                                <td class="text-center align-items-center">
-{{--                                                    <a href="#" class="btn btn-primary btn-sm"><i--}}
-{{--                                                            class="fa fa-save"></i></a>--}}
-                                                    <a href="{{route('transactions', ['user_id' => $user->id])}}" class="btn btn-info btn-sm"
-                                                       title="Click to view transaction record of the user"><i
-                                                            class="fa fa-search"></i></a>
-                                                </td>
-                                            </tr>
+                                            <form action="{{route('update-user', [$user->id])}}" method="post">
+                                                @csrf
+                                                <tr>
+                                                    <td class="text-center">{{$user->id}}</td>
+                                                    <td class="text-center">User-{{$user->id}}</td>
+                                                    <td class="text-center">{{$user->name}}</td>
+                                                    <td class="text-center">{{$user->email}}</td>
+                                                    <td class="text-center">{{$user->mobile}}</td>
+
+                                                    <td class="text-center quick-edit">
+                                                        <input type="text" name="created_at"
+                                                               value="{{$user->created_at->toDateString()}}"
+                                                               class="quick-edit-input text-center flatpickr-date flatpickr-input active">
+                                                        <span
+                                                            class="quick-edit-text">{{$user->created_at->toDateString()}}</span>
+                                                    </td>
+                                                    <td class="text-center quick-edit">
+                                                        <select class="quick-edit-input text-center form-control"
+                                                                name="role">
+                                                            @foreach(\App\Models\User::ROLES as $id=>$role)
+                                                                <option
+                                                                    value="{{$id}}" {{$user->role == $id ? 'selected':''}}>{{$role}}</option>
+                                                            @endforeach
+                                                        </select>
+                                                        <span
+                                                            class="quick-edit-text">{{\App\Models\User::ROLES[$user->role]}}</span>
+                                                    </td>
+                                                    <td class="text-center quick-edit">
+                                                        <input type="text" name="start_date" value="{{$user->start_date}}"
+                                                               class="quick-edit-input text-center flatpickr-date flatpickr-input active">
+                                                        <span class="quick-edit-text">{{$user->start_date}}</span>
+                                                    </td>
+                                                    <td class="text-center quick-edit">
+                                                        <input type="text" name="expiry_date" value="{{$user->expiry_date}}"
+                                                               class="quick-edit-input text-center flatpickr-date flatpickr-input active">
+                                                        <span class="quick-edit-text">{{$user->expiry_date}}</span>
+                                                    </td>
+                                                    <td class="text-center quick-edit">
+                                                        <select class="quick-edit-input text-center  form-control"
+                                                                name="status">
+                                                            <option value="0" {{$user->status == 0 ? 'selected' : ''}}>Disabled</option>
+                                                            <option value="1" {{$user->status == 1 ? 'selected' : ''}}>Enabled</option>
+                                                        </select>
+                                                        <span
+                                                            class="quick-edit-text">{{$user->status ? 'Enabled' : 'Disabled'}}</span>
+                                                    </td>
+                                                    <td class="text-center align-items-center">
+                                                        <button type="submit" class="btn btn-primary btn-sm">
+                                                            <i class="fa fa-save"></i>
+                                                        </button>
+                                                        <a href="{{route('transactions', ['user_id' => $user->id])}}"
+                                                           class="btn btn-info btn-sm"
+                                                           title="Click to view transaction record of the user"><i
+                                                                class="fa fa-search"></i></a>
+                                                    </td>
+                                                </tr>
+                                            </form>
                                         @endforeach
                                         </tbody>
                                     </table>

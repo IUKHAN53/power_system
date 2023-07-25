@@ -30,15 +30,19 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/save-transaction', [PowerSystemController::class, 'saveTransaction'])->name('save-transaction');
 
     Route::get('/ra_dates', [PowerSystemController::class, 'raDates'])->name('ra_dates');
+    Route::get('/verify-dates', [PowerSystemController::class, 'verifyDates'])->name('verify-dates');
 
     Route::get('/transactions/{user_id?}', [PowerSystemController::class, 'transactions'])->name('transactions');
 
     Route::get('/users', [PowerSystemController::class, 'users'])->name('users');
+    Route::post('/update-user/{id}', [PowerSystemController::class, 'updateUser'])->name('update-user');
 
     Route::get('/favourites', [PowerSystemController::class, 'favourites'])->name('favourites');
 
 //    AJAX Routes
     Route::post('/mark-fav', [PowerSystemController::class, 'markAsFavourite'])->name('mark-fav');
+    Route::post('/update-data-field', [PowerSystemController::class, 'updateField'])->name('update-data-field');
+    Route::post('/save-remarks', [PowerSystemController::class, 'saveNumberRemarks'])->name('save-remarks');
 });
 
 

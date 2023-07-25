@@ -10,12 +10,13 @@
                     <div class="row">
                         <div class="col-md-12 col-12 order-2 order-md-0">
                             <div class="card-header m-2">
-                                <h5 class="mb-0"><span class="float-left">RA Dates</span>
-                                    <!-- <button class="btn btn-info float-right m2" style="float:right">Quick Edit</button></h5> -->
+                                <h5 class="mb-0"><span class="float-left">RA Dates</span></h5>
+                                <!-- <button class="btn btn-info float-right m2" style="float:right">Quick Edit</button></h5> -->
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive text-nowrap">
-                                    <table class="table tabl-striped table-hover table-bordered tale-sm" id="table-ra-dates">
+                                    <table class="table tabl-striped table-hover table-bordered tale-sm"
+                                           id="table-ra-dates">
                                         <thead>
                                         <tr>
                                             <th>Number</th>
@@ -36,177 +37,109 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr>
-                                            <td class="text-center">0001</td>
-                                            <td class="text-center"><input style="width:128px!important;" type="text" class="form-control flatpickr-input active flatpickr-date" placeholder="DD-MM-YYYY" readonly="readonly"></td>
-                                            <td class="quick-edit text-center"><input type="text" class="quick-edit-input flatpickr-input flatpickr-date text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="quick-edit text-center"><input type="text" class="quick-edit-input flatpickr-input flatpickr-date text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="quick-edit text-center"><input type="text" class="quick-edit-input flatpickr-input flatpickr-date text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="quick-edit text-center"><input type="text" class="quick-edit-input flatpickr-input flatpickr-date text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="quick-edit text-center"><input type="text" class="quick-edit-input flatpickr-input flatpickr-date text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="quick-edit text-center"><input type="text" class="quick-edit-input flatpickr-input flatpickr-date text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="quick-edit text-center"><input type="text" class="quick-edit-input flatpickr-input flatpickr-date text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="quick-edit text-center"><input type="text" class="quick-edit-input flatpickr-input flatpickr-date text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="quick-edit text-center"><input type="text" class="quick-edit-input flatpickr-input flatpickr-date text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="quick-edit text-center"><input type="text" class="quick-edit-input flatpickr-input flatpickr-date text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="quick-edit text-center"><input type="text" class="quick-edit-input flatpickr-input flatpickr-date text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="quick-edit text-center"><input type="text" class="quick-edit-input flatpickr-input flatpickr-date text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td title="Click to Verify"><button class="btn btn-info btn-sm"> <i class="fa fa-check-circle"></i> </button></td>
-                                        </tr>
-
-                                        <tr>
-                                            <td class="text-center">0001</td>
-                                            <td class="text-center"><input style="width:128px!important;" type="text" class="form-control flatpickr-input active flatpickr-date" placeholder="DD-MM-YYYY" readonly="readonly"></td>
-                                            <td class="quick-edit text-center"><input type="text" class="quick-edit-input flatpickr-input flatpickr-date text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="quick-edit text-center"><input type="text" class="quick-edit-input flatpickr-input flatpickr-date text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="quick-edit text-center"><input type="text" class="quick-edit-input flatpickr-input flatpickr-date text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="quick-edit text-center"><input type="text" class="quick-edit-input flatpickr-input flatpickr-date text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="quick-edit text-center"><input type="text" class="quick-edit-input flatpickr-input flatpickr-date text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="quick-edit text-center"><input type="text" class="quick-edit-input flatpickr-input flatpickr-date text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="quick-edit text-center"><input type="text" class="quick-edit-input flatpickr-input flatpickr-date text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="quick-edit text-center"><input type="text" class="quick-edit-input flatpickr-input flatpickr-date text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="quick-edit text-center"><input type="text" class="quick-edit-input flatpickr-input flatpickr-date text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="quick-edit text-center"><input type="text" class="quick-edit-input flatpickr-input flatpickr-date text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="quick-edit text-center"><input type="text" class="quick-edit-input flatpickr-input flatpickr-date text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="quick-edit text-center"><input type="text" class="quick-edit-input flatpickr-input flatpickr-date text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td title="Click to Verify"><button class="btn btn-info btn-sm"> <i class="fa fa-check-circle"></i> </button></td>
-                                        </tr>
-
-                                        <tr>
-                                            <td class="text-center">0001</td>
-                                            <td class="text-center"><input style="width:128px!important;" type="text" class="form-control flatpickr-input active flatpickr-date" placeholder="DD-MM-YYYY" readonly="readonly"></td>
-                                            <td class="quick-edit text-center"><input type="text" class="quick-edit-input flatpickr-input flatpickr-date text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="quick-edit text-center"><input type="text" class="quick-edit-input flatpickr-input flatpickr-date text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="quick-edit text-center"><input type="text" class="quick-edit-input flatpickr-input flatpickr-date text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="quick-edit text-center"><input type="text" class="quick-edit-input flatpickr-input flatpickr-date text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="quick-edit text-center"><input type="text" class="quick-edit-input flatpickr-input flatpickr-date text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="quick-edit text-center"><input type="text" class="quick-edit-input flatpickr-input flatpickr-date text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="quick-edit text-center"><input type="text" class="quick-edit-input flatpickr-input flatpickr-date text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="quick-edit text-center"><input type="text" class="quick-edit-input flatpickr-input flatpickr-date text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="quick-edit text-center"><input type="text" class="quick-edit-input flatpickr-input flatpickr-date text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="quick-edit text-center"><input type="text" class="quick-edit-input flatpickr-input flatpickr-date text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="quick-edit text-center"><input type="text" class="quick-edit-input flatpickr-input flatpickr-date text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="quick-edit text-center"><input type="text" class="quick-edit-input flatpickr-input flatpickr-date text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td title="Click to Verify"><button class="btn btn-info btn-sm"> <i class="fa fa-check-circle"></i> </button></td>
-                                        </tr>
-
-                                        <tr>
-                                            <td class="text-center">0001</td>
-                                            <td class="text-center"><input style="width:128px!important;" type="text" class="form-control flatpickr-input active flatpickr-date" placeholder="DD-MM-YYYY" readonly="readonly"></td>
-                                            <td class="quick-edit text-center"><input type="text" class="quick-edit-input flatpickr-input flatpickr-date text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="quick-edit text-center"><input type="text" class="quick-edit-input flatpickr-input flatpickr-date text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="quick-edit text-center"><input type="text" class="quick-edit-input flatpickr-input flatpickr-date text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="quick-edit text-center"><input type="text" class="quick-edit-input flatpickr-input flatpickr-date text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="quick-edit text-center"><input type="text" class="quick-edit-input flatpickr-input flatpickr-date text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="quick-edit text-center"><input type="text" class="quick-edit-input flatpickr-input flatpickr-date text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="quick-edit text-center"><input type="text" class="quick-edit-input flatpickr-input flatpickr-date text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="quick-edit text-center"><input type="text" class="quick-edit-input flatpickr-input flatpickr-date text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="quick-edit text-center"><input type="text" class="quick-edit-input flatpickr-input flatpickr-date text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="quick-edit text-center"><input type="text" class="quick-edit-input flatpickr-input flatpickr-date text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="quick-edit text-center"><input type="text" class="quick-edit-input flatpickr-input flatpickr-date text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="quick-edit text-center"><input type="text" class="quick-edit-input flatpickr-input flatpickr-date text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td title="Click to Verify"><button class="btn btn-info btn-sm"> <i class="fa fa-check-circle"></i> </button></td>
-                                        </tr>
-
-                                        <tr>
-                                            <td class="text-center">0001</td>
-                                            <td class="text-center"><input style="width:128px!important;" type="text" class="form-control flatpickr-input active flatpickr-date" placeholder="DD-MM-YYYY" readonly="readonly"></td>
-                                            <td class="quick-edit text-center"><input type="text" class="quick-edit-input flatpickr-input flatpickr-date text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="quick-edit text-center"><input type="text" class="quick-edit-input flatpickr-input flatpickr-date text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="quick-edit text-center"><input type="text" class="quick-edit-input flatpickr-input flatpickr-date text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="quick-edit text-center"><input type="text" class="quick-edit-input flatpickr-input flatpickr-date text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="quick-edit text-center"><input type="text" class="quick-edit-input flatpickr-input flatpickr-date text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="quick-edit text-center"><input type="text" class="quick-edit-input flatpickr-input flatpickr-date text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="quick-edit text-center"><input type="text" class="quick-edit-input flatpickr-input flatpickr-date text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="quick-edit text-center"><input type="text" class="quick-edit-input flatpickr-input flatpickr-date text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="quick-edit text-center"><input type="text" class="quick-edit-input flatpickr-input flatpickr-date text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="quick-edit text-center"><input type="text" class="quick-edit-input flatpickr-input flatpickr-date text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="quick-edit text-center"><input type="text" class="quick-edit-input flatpickr-input flatpickr-date text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="quick-edit text-center"><input type="text" class="quick-edit-input flatpickr-input flatpickr-date text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td title="Click to Verify"><button class="btn btn-info btn-sm"> <i class="fa fa-check-circle"></i> </button></td>
-                                        </tr>
-
-                                        <tr>
-                                            <td class="text-center">0001</td>
-                                            <td class="text-center"><input style="width:128px!important;" type="text" class="form-control flatpickr-input active flatpickr-date" placeholder="DD-MM-YYYY" readonly="readonly"></td>
-                                            <td class="quick-edit text-center"><input type="text" class="quick-edit-input flatpickr-input flatpickr-date text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="quick-edit text-center"><input type="text" class="quick-edit-input flatpickr-input flatpickr-date text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="quick-edit text-center"><input type="text" class="quick-edit-input flatpickr-input flatpickr-date text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="quick-edit text-center"><input type="text" class="quick-edit-input flatpickr-input flatpickr-date text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="quick-edit text-center"><input type="text" class="quick-edit-input flatpickr-input flatpickr-date text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="quick-edit text-center"><input type="text" class="quick-edit-input flatpickr-input flatpickr-date text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="quick-edit text-center"><input type="text" class="quick-edit-input flatpickr-input flatpickr-date text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="quick-edit text-center"><input type="text" class="quick-edit-input flatpickr-input flatpickr-date text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="quick-edit text-center"><input type="text" class="quick-edit-input flatpickr-input flatpickr-date text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="quick-edit text-center"><input type="text" class="quick-edit-input flatpickr-input flatpickr-date text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="quick-edit text-center"><input type="text" class="quick-edit-input flatpickr-input flatpickr-date text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="quick-edit text-center"><input type="text" class="quick-edit-input flatpickr-input flatpickr-date text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td title="Click to Verify"><button class="btn btn-info btn-sm"> <i class="fa fa-check-circle"></i> </button></td>
-                                        </tr>
-
-                                        <tr>
-                                            <td class="text-center">0001</td>
-                                            <td class="text-center"><input style="width:128px!important;" type="text" class="form-control flatpickr-input active flatpickr-date" placeholder="DD-MM-YYYY" readonly="readonly"></td>
-                                            <td class="quick-edit text-center"><input type="text" class="quick-edit-input flatpickr-input flatpickr-date text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="quick-edit text-center"><input type="text" class="quick-edit-input flatpickr-input flatpickr-date text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="quick-edit text-center"><input type="text" class="quick-edit-input flatpickr-input flatpickr-date text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="quick-edit text-center"><input type="text" class="quick-edit-input flatpickr-input flatpickr-date text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="quick-edit text-center"><input type="text" class="quick-edit-input flatpickr-input flatpickr-date text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="quick-edit text-center"><input type="text" class="quick-edit-input flatpickr-input flatpickr-date text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="quick-edit text-center"><input type="text" class="quick-edit-input flatpickr-input flatpickr-date text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="quick-edit text-center"><input type="text" class="quick-edit-input flatpickr-input flatpickr-date text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="quick-edit text-center"><input type="text" class="quick-edit-input flatpickr-input flatpickr-date text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="quick-edit text-center"><input type="text" class="quick-edit-input flatpickr-input flatpickr-date text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="quick-edit text-center"><input type="text" class="quick-edit-input flatpickr-input flatpickr-date text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="quick-edit text-center"><input type="text" class="quick-edit-input flatpickr-input flatpickr-date text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td title="Click to Verify"><button class="btn btn-info btn-sm"> <i class="fa fa-check-circle"></i> </button></td>
-                                        </tr>
-
-                                        <tr>
-                                            <td class="text-center">0001</td>
-                                            <td class="text-center"><input style="width:128px!important;" type="text" class="form-control flatpickr-input active flatpickr-date" placeholder="DD-MM-YYYY" readonly="readonly"></td>
-                                            <td class="quick-edit text-center"><input type="text" class="quick-edit-input flatpickr-input flatpickr-date text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="quick-edit text-center"><input type="text" class="quick-edit-input flatpickr-input flatpickr-date text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="quick-edit text-center"><input type="text" class="quick-edit-input flatpickr-input flatpickr-date text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="quick-edit text-center"><input type="text" class="quick-edit-input flatpickr-input flatpickr-date text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="quick-edit text-center"><input type="text" class="quick-edit-input flatpickr-input flatpickr-date text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="quick-edit text-center"><input type="text" class="quick-edit-input flatpickr-input flatpickr-date text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="quick-edit text-center"><input type="text" class="quick-edit-input flatpickr-input flatpickr-date text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="quick-edit text-center"><input type="text" class="quick-edit-input flatpickr-input flatpickr-date text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="quick-edit text-center"><input type="text" class="quick-edit-input flatpickr-input flatpickr-date text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="quick-edit text-center"><input type="text" class="quick-edit-input flatpickr-input flatpickr-date text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="quick-edit text-center"><input type="text" class="quick-edit-input flatpickr-input flatpickr-date text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td class="quick-edit text-center"><input type="text" class="quick-edit-input flatpickr-input flatpickr-date text-center"><span class="quick-edit-text">14/03/2023</span></td>
-                                            <td title="Click to Verify"><button class="btn btn-info btn-sm"> <i class="fa fa-check-circle"></i> </button></td>
-                                        </tr>
-
-
-
-
+                                        @foreach($data as $number => $ra_dates)
+                                            @if($ra_dates)
+                                                <tr id="{{str_replace('hkg', '', $number)}}">
+                                                    <td class="text-center">{{str_replace('hkg', '', $number)}}</td>
+                                                    <td class="text-center">
+                                                        <input style="width:128px!important;" type="text"
+                                                               onchange="dateChanged(this, 'next')"
+                                                               class="form-control flatpickr-input active flatpickr-date"
+                                                               placeholder="YYYY-MM-DD" readonly="readonly">
+                                                    </td>
+                                                    @for($i = 1 ; $i <=12; $i++)
+                                                        <td class="quick-edit text-center">
+                                                            <input onchange="dateChanged(this, 'last'+{{$i}})"
+                                                                   class="quick-edit-input flatpickr-input flatpickr-date text-center "
+                                                                   type="text">
+                                                            <span
+                                                                class="quick-edit-text dates">{{ $ra_dates->{'last'.$i} }}</span>
+                                                        </td>
+                                                    @endfor
+                                                    <td title="Click to Verify">
+                                                        <button class="btn btn-info btn-sm"
+                                                                onclick="verifyDate(this,'{{$number}}')">
+                                                            <i class="fa fa-check-circle"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            @endif
+                                        @endforeach
                                         </tbody>
                                     </table>
-                                    <form action="/upload" class="dropzone needsclick" id="dropzone-basic">
-                                        <div class="dz-message needsclick">
-                                            Drop RA Dates files here or click to upload
-                                            <span class="note needsclick"
-                                            >(This is just a demo dropzone. Selected files are <strong>not</strong> actually
-                                                uploaded.)</span
-                                            >
-                                        </div>
-                                        <div class="fallback">
-                                            <input name="file" type="file" />
-                                        </div>
-                                    </form>
+                                    {{--                                    <form action="/upload" class="dropzone needsclick" id="dropzone-basic">--}}
+                                    {{--                                        <div class="dz-message needsclick">--}}
+                                    {{--                                            Drop RA Dates files here or click to upload--}}
+                                    {{--                                            <span class="note needsclick"--}}
+                                    {{--                                            >(This is just a demo dropzone. Selected files are <strong>not</strong>--}}
+                                    {{--                                                actually--}}
+                                    {{--                                                uploaded.)</span--}}
+                                    {{--                                            >--}}
+                                    {{--                                        </div>--}}
+                                    {{--                                        <div class="fallback">--}}
+                                    {{--                                            <input name="file" type="file"/>--}}
+                                    {{--                                        </div>--}}
+                                    {{--                                    </form>--}}
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <!--/ Recent RA -->
-
-
         </div>
     </div>
+    <script>
+        function dateChanged(element, field) {
+            var date = $(element).val();
+            var number = $(element).closest('tr').find('td:first').text();
+            var url = "{{route('update-data-field')}}";
+            $.ajax({
+                url: url,
+                type: 'POST',
+                data: {
+                    field: field,
+                    value: date,
+                    number: number,
+                    from: 'ra_dates'
+                },
+                success: function () {
+                    $(this).hide();
+                    $(this).parent().find(".quick-edit-text").show();
+                    $(this).parent().find(".quick-edit-text").text(date);
+                }
+            });
+        }
+
+        function verifyDate(buttonElement, number) {
+            const tableRow = buttonElement.closest('tr');
+            const nextDateInput = tableRow.querySelector('input[onchange="dateChanged(this, \'next\')"]');
+            const originalNextDateValue = nextDateInput.value;
+            if (originalNextDateValue.trim() === '') {
+                alert('Please input "Next Date" before verifying.');
+                return;
+            }
+            const confirmation = confirm('Is the Next Date data correct?');
+            if (confirmation) {
+                window.location.href = `/verify-dates?number=${number}`;
+            } else {
+                alert('Verification canceled.');
+            }
+        }
+    </script>
+    <script type="module">
+        $('.quick-edit-input').keyup(function (e) {
+            var key = e.which;
+            if (key === 13) {//ENTER
+                $(this).hide();
+                $(this).parent().find(".quick-edit-text").text($(this).val());
+                $(this).parent().find(".quick-edit-text").show();
+            }
+            if (key === 27) {//ESCAPE
+                $(this).hide();
+                $(this).parent().find(".quick-edit-text").show();
+                // $(this).parent().find(".quick-edit-text").text($(this).val());
+            }
+        });
+    </script>
 @endsection
 
