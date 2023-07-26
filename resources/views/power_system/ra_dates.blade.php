@@ -44,6 +44,7 @@
                                                     <td class="text-center">
                                                         <input style="width:128px!important;" type="text"
                                                                onchange="dateChanged(this, 'next')"
+                                                                value="{{($ra_dates->next == '0000-00-00') ? '' : $ra_dates->next}}"
                                                                class="form-control flatpickr-input active flatpickr-date"
                                                                placeholder="YYYY-MM-DD" readonly="readonly">
                                                     </td>

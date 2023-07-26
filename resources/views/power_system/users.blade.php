@@ -35,8 +35,11 @@
                                                     <td class="text-center">User-{{$user->id}}</td>
                                                     <td class="text-center">{{$user->name}}</td>
                                                     <td class="text-center">{{$user->email}}</td>
-                                                    <td class="text-center">{{$user->mobile}}</td>
-
+                                                    <td class="text-center quick-edit">
+                                                        <input type="text" name="mobile" value="{{$user->mobile}}"
+                                                               class="quick-edit-input text-center">
+                                                        <span class="quick-edit-text">{{$user->mobile}}</span>
+                                                    </td>
                                                     <td class="text-center quick-edit">
                                                         <input type="text" name="created_at"
                                                                value="{{$user->created_at->toDateString()}}"

@@ -46,14 +46,13 @@ class PowerSystemController extends Controller
         });
         $data = [];
         foreach ($tablesStartingWithHKG as $table) {
-            $next = DB::table('ra_dates')->where('stockno', convertToStockFormat($table))->pluck('next')->toArray();
-            $to_go = null;
-            if (isset($next[0]) && $next[0] != '0000-00-00') {
-                $to_go = Carbon::parse($next[0])->diffInDays(Carbon::now());
-            }
+            $next = DB::table('ra_dates')->where('stockno', convertToStockFormat($table))
+                ->where('next', '!=', '0000-00-00')
+                ->pluck('next')->first();
+            $to_go = ($next) ? Carbon::parse($next)->diffInDays(Carbon::now()) : null;
             $is_fav = auth()->user()->favourites()->where('stockno', convertToStockFormat($table))->exists();
             $data[$table] = [
-                'next' => $next[0] ?? '0000-00-00',
+                'next' => $next,
                 'to_go' => $to_go,
                 'fav' => $is_fav,
             ];
@@ -183,25 +182,19 @@ class PowerSystemController extends Controller
     {
         $request->validate([
             'stockno' => 'required',
-            'buy_date' => 'required',
             'buy_price' => 'required',
             'buy_volume' => 'required',
-            'sell_date' => 'required',
-            'sell_price' => 'required',
-            'sell_volume' => 'required',
-            'difference' => 'required',
-            'remarks' => 'required',
         ]);
         $transaction = new Transaction();
-        $transaction->stockno = convertToStockFormat($request->stockno);
-        $transaction->buy_date = $request->buy_date;
+        $transaction->stockno = convertToStockFormat($request->stockno) ?? '';
+        $transaction->buy_date = $request->buy_date ?? now();
         $transaction->buy_price = $request->buy_price;
         $transaction->buy_volume = $request->buy_volume;
-        $transaction->sell_date = $request->sell_date;
-        $transaction->sell_price = $request->sell_price;
-        $transaction->sell_volume = $request->sell_volume;
-        $transaction->difference = $request->difference;
-        $transaction->remarks = $request->remarks;
+        $transaction->sell_date = $request->sell_price ? $request->sell_date ?? now() : null;
+        $transaction->sell_price = $request->sell_price ?? null;
+        $transaction->sell_volume = $request->sell_volume ?? null;
+        $transaction->difference = $request->difference ?? null;
+        $transaction->remarks = $request->remarks ?? null;
         $transaction->user_id = auth()->id();
         $transaction->save();
         flashSuccess('Transaction saved successfully.');
@@ -220,7 +213,7 @@ class PowerSystemController extends Controller
                 $request->field => $date,
             ]);
             return response()->json(['success' => true]);
-        } elseif ($request->from == 'transactions'){
+        } elseif ($request->from == 'transactions') {
             $transaction = Transaction::query()->find($request->id);
             $transaction->{$request->field} = $request->value;
             $transaction->save();
@@ -244,7 +237,8 @@ class PowerSystemController extends Controller
         return back();
     }
 
-    public function saveNumberRemarks(Request $request){
+    public function saveNumberRemarks(Request $request)
+    {
         $number = convertToStockFormat($request->number);
         $remarks = $request->remarks;
         $user = auth()->user();
