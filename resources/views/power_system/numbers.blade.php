@@ -12,73 +12,102 @@
                                 <h5 class="mb-0">Recent RA</h5>
                             </div>
                             <div class="card-body">
-                                <div class="table-responsive text-nowrap">
-                                    <table class="table tabl-striped table-hover table-sm" id="recent-ra">
-                                        <thead>
-                                        <tr>
-                                            <th class="text-center">Favourite</th>
-                                            <th>Number</th>
-                                            <th>Last 5 S:D</th>
-                                            <th>Last 10 S:D</th>
-                                            <th>Last 5 U:F</th>
-                                            <th>Last 10 U:F</th>
-                                            <th>Next RA Date</th>
-                                            <th>RA Date to Go</th>
-                                            <th>RA Remarks</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        @foreach($data as $number => $value)
+                                @if(can_access('number_list'))
+                                    <div class="table-responsive text-nowrap">
+                                        <table class="table tabl-striped table-hover table-sm" id="recent-ra">
+                                            <thead>
                                             <tr>
-                                                <td class="text-center">
-                                                    <div class="form-check-primary">
-                                                        <input class="form-check-input" type="checkbox" onchange="markFav('{{$number}}', this)"
-                                                               {{$value['fav'] == 'true' ? 'checked' : ''}}>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <a href="{{route('number-details',$number)}}">{{str_replace('hkg', '', $number)}}</a>
-                                                </td>
-                                                <td class="text-center">
-                                                    <div class="progress rounded">
-                                                        <div class="progress-bar" role="progressbar" aria-valuenow="70"
-                                                             aria-valuemin="0" aria-valuemax="100" style="width:37%">
-                                                            37%
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td class="text-center">
-                                                    <div class="progress rounded">
-                                                        <div class="progress-bar" role="progressbar" aria-valuenow="70"
-                                                             aria-valuemin="0" aria-valuemax="100" style="width:37%">
-                                                            37%
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td class="text-center">
-                                                    <div class="progress rounded">
-                                                        <div class="progress-bar" role="progressbar" aria-valuenow="70"
-                                                             aria-valuemin="0" aria-valuemax="100" style="width:37%">
-                                                            37%
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td class="text-center">
-                                                    <div class="progress rounded">
-                                                        <div class="progress-bar" role="progressbar" aria-valuenow="70"
-                                                             aria-valuemin="0" aria-valuemax="100" style="width:37%">
-                                                            37%
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td>{{$value['next']}}</td>
-                                                <td>{{getReadableDay($value['to_go'])}}</td>
-                                                <td></td>
+                                                <th>
+                                                    @if(can_access('mark_favourite'))
+                                                        Favourite
+                                                    @endif
+                                                </th>
+                                                <th>Number</th>
+                                                <th>Last 5 S:D</th>
+                                                <th>Last 10 S:D</th>
+                                                <th>Last 5 U:F</th>
+                                                <th>Last 10 U:F</th>
+                                                <th>Next RA Date</th>
+                                                <th>RA Date to Go</th>
+                                                <th>
+                                                    @if(can_access('remarks_of_number'))
+                                                        Remarks
+                                                    @endif
+                                                </th>
+
+
                                             </tr>
-                                        @endforeach
-                                        </tbody>
-                                    </table>
-                                </div>
+                                            </thead>
+                                            <tbody>
+                                            @foreach($data as $number => $value)
+                                                <tr>
+                                                    <td class="text-center">
+                                                        @if(can_access('mark_favourite'))
+                                                            <div class="form-check-primary">
+                                                                <input class="form-check-input" type="checkbox"
+                                                                       onchange="markFav('{{$number}}', this)"
+                                                                    {{$value['fav'] == 'true' ? 'checked' : ''}}>
+                                                            </div>
+                                                        @endif
+                                                    </td>
+                                                    <td>
+                                                        <a href="{{route('number-details',$number)}}">{{str_replace('hkg', '', $number)}}</a>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <div class="progress rounded">
+                                                            <div class="progress-bar" role="progressbar"
+                                                                 aria-valuenow="70"
+                                                                 aria-valuemin="0" aria-valuemax="100"
+                                                                 style="width:37%">
+                                                                37%
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <div class="progress rounded">
+                                                            <div class="progress-bar" role="progressbar"
+                                                                 aria-valuenow="70"
+                                                                 aria-valuemin="0" aria-valuemax="100"
+                                                                 style="width:37%">
+                                                                37%
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <div class="progress rounded">
+                                                            <div class="progress-bar" role="progressbar"
+                                                                 aria-valuenow="70"
+                                                                 aria-valuemin="0" aria-valuemax="100"
+                                                                 style="width:37%">
+                                                                37%
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <div class="progress rounded">
+                                                            <div class="progress-bar" role="progressbar"
+                                                                 aria-valuenow="70"
+                                                                 aria-valuemin="0" aria-valuemax="100"
+                                                                 style="width:37%">
+                                                                37%
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td>{{$value['next']}}</td>
+                                                    <td>{{getReadableDay($value['to_go'])}}</td>
+                                                    <td>
+                                                        @if(can_access('remarks_of_number'))
+                                                            {{$value['remarks']}}
+                                                        @endif
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                @else
+                                    <h3 class="text-center"> Members Only</h3>
+                                @endif
                             </div>
                         </div>
                     </div>

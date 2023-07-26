@@ -22,7 +22,13 @@ class PowerSystemController extends Controller
         } else {
             $checklist = [];
         }
-        $ra_dates = DB::table('ra_dates')->where('next', '!=', '0000-00-00')->get();
+        if (can_access('recent_ra')) {
+            $ra_dates = DB::table('ra_dates')->where('next', '!=', '0000-00-00')->get();
+        } else {
+            $ra_dates = DB::table('ra_dates')->where('next', '!=', '0000-00-00')
+                ->whereDate('next', '<=', now()->addDays(3)->format('Y-m-d'))
+                ->get();
+        }
         $data = [];
         foreach ($ra_dates as $item) {
             $number = extractValueFromStockFormat($item->stockno);
@@ -46,16 +52,37 @@ class PowerSystemController extends Controller
         });
         $data = [];
         foreach ($tablesStartingWithHKG as $table) {
-            $next = DB::table('ra_dates')->where('stockno', convertToStockFormat($table))
-                ->where('next', '!=', '0000-00-00')
-                ->pluck('next')->first();
-            $to_go = ($next) ? Carbon::parse($next)->diffInDays(Carbon::now()) : null;
-            $is_fav = auth()->user()->favourites()->where('stockno', convertToStockFormat($table))->exists();
-            $data[$table] = [
-                'next' => $next,
-                'to_go' => $to_go,
-                'fav' => $is_fav,
-            ];
+            if (can_access('number_list')) {
+                $next = DB::table('ra_dates')->where('stockno', convertToStockFormat($table))
+                    ->where('next', '!=', '0000-00-00')
+                    ->pluck('next')->first();
+                $to_go = ($next) ? Carbon::parse($next)->diffInDays(Carbon::now()) : null;
+                $is_fav = auth()->user()->favourites()->where('stockno', convertToStockFormat($table))->exists();
+                $remarks = getNumberRemarks($table);
+                $data[$table] = [
+                    'next' => $next,
+                    'to_go' => $to_go,
+                    'fav' => $is_fav,
+                    'remarks' => $remarks,
+                ];
+            } else {
+                $next = DB::table('ra_dates')->where('stockno', convertToStockFormat($table))
+                    ->where('next', '!=', '0000-00-00')
+                    ->whereDate('next', '<=', now()->addDays(3)->format('Y-m-d'))
+                    ->pluck('next')->first();
+                if($next){
+                    $to_go = Carbon::parse($next)->diffInDays(Carbon::now());
+                    $is_fav = auth()->user()->favourites()->where('stockno', convertToStockFormat($table))->exists();
+                    $data[$table] = [
+                        'next' => $next,
+                        'to_go' => $to_go,
+                        'fav' => $is_fav,
+                        'remarks' => '',
+                    ];
+                }
+            }
+
+
         }
         return view('power_system.numbers', compact('data'));
     }
@@ -108,6 +135,9 @@ class PowerSystemController extends Controller
 
     public function transactions($user_id = null)
     {
+        if(!can_access('transactions')){
+            abort(401, 'Unauthorized');
+        }
         if ($user_id != null) {
             $user = User::find($user_id);
             $transactions = $user->transactions;

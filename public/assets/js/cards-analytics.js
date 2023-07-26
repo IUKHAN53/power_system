@@ -331,9 +331,6 @@
         }
       },
       series: [13, 18, 18, 24, 16],
-      tooltip: {
-        enabled: false
-      },
       legend: {
         position: 'bottom',
         fontFamily: 'Inter',

@@ -19,18 +19,22 @@
                     <div data-i18n="RA Dates">RA Dates</div>
                 </a>
             </li>
-            <li class="menu-item {{request()->is('transactions') ? 'active' : ''}}">
-                <a href="{{route('transactions')}}" class="menu-link ">
-                    <i class="menu-icon tf-icons mdi mdi-format-list-group"></i>
-                    <div data-i18n="Transactions">Transactions</div>
-                </a>
-            </li>
-            <li class="menu-item {{request()->is('users') ? 'active' : ''}}">
-                <a href="{{route('users')}}" class="menu-link ">
-                    <i class="menu-icon tf-icons mdi mdi-account-outline"></i>
-                    <div data-i18n="Users">Users</div>
-                </a>
-            </li>
+            @if(can_access('transactions'))
+                <li class="menu-item {{request()->is('transactions') ? 'active' : ''}}">
+                    <a href="{{route('transactions')}}" class="menu-link ">
+                        <i class="menu-icon tf-icons mdi mdi-format-list-group"></i>
+                        <div data-i18n="Transactions">Transactions</div>
+                    </a>
+                </li>
+            @endif
+            @if(can_access('users'))
+                <li class="menu-item {{request()->is('users') ? 'active' : ''}}">
+                    <a href="{{route('users')}}" class="menu-link ">
+                        <i class="menu-icon tf-icons mdi mdi-account-outline"></i>
+                        <div data-i18n="Users">Users</div>
+                    </a>
+                </li>
+            @endif
         </ul>
     </div>
 </aside>

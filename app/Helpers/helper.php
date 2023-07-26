@@ -155,12 +155,78 @@ function compareDates($date1, $date2)
     return \Carbon\Carbon::parse($date1)->toDateString() == \Carbon\Carbon::parse($date2)->toDateString();
 }
 
-function getNumberRemarks($number){
+function getNumberRemarks($number)
+{
     $remarks = \App\Models\NumberRemarks::where('stockno', convertToStockFormat($number))->where('user_id', auth()->id())->first();
-    if($remarks){
+    if ($remarks) {
         return $remarks->remarks;
-    }else{
+    } else {
         return '';
     }
 
 }
+
+function can_access(string $permission_name): bool
+{
+    $admin = [
+        'dashboard',
+        'daily_checklist',
+        'notes',
+        'recent_ra',
+        'mark_favourite',
+        'number_list',
+        'number_details',
+        'ra_pattern',
+        'remarks_of_number',
+        'transaction_record',
+        'ra_dates',
+        'ra_data_review',
+        'ra_data_update',
+        'transactions',
+        'users',
+        'top_bar_icons',
+        'languages',
+        'calculator',
+    ];
+    $member = [
+        'dashboard',
+        'daily_checklist',
+        'notes',
+        'recent_ra',
+        'mark_favourite',
+        'number_list',
+        'number_details',
+        'ra_pattern',
+        'remarks_of_number',
+        'transaction_record',
+        'ra_dates',
+        'ra_data_review',
+        'top_bar_icons',
+        'languages',
+        'calculator',
+    ];
+    $registered = [
+        'dashboard',
+        'recent_ra',
+        'number_details',
+        'ra_pattern',
+        'ra_dates',
+        'data_review',
+        'top_bar_icons',
+        'languages',
+    ];
+
+    $user = auth()->user();
+    if ($user->isAdmin()) {
+        return in_array($permission_name, $admin);
+    } elseif ($user->isMember()) {
+        return in_array($permission_name, $member);
+    } elseif ($user->isUser()) {
+        return in_array($permission_name, $registered);
+    } else {
+        return false;
+    }
+
+}
+
+

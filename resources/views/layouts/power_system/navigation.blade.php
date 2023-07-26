@@ -31,21 +31,21 @@
                                 <span class="align-middle">English</span>
                             </a>
                         </li>
-{{--                        <li>--}}
-{{--                            <a class="dropdown-item" href="javascript:void(0);" data-language="fr">--}}
-{{--                                <span class="align-middle">French</span>--}}
-{{--                            </a>--}}
-{{--                        </li>--}}
-{{--                        <li>--}}
-{{--                            <a class="dropdown-item" href="javascript:void(0);" data-language="de">--}}
-{{--                                <span class="align-middle">German</span>--}}
-{{--                            </a>--}}
-{{--                        </li>--}}
-{{--                        <li>--}}
-{{--                            <a class="dropdown-item" href="javascript:void(0);" data-language="pt">--}}
-{{--                                <span class="align-middle">Portuguese</span>--}}
-{{--                            </a>--}}
-{{--                        </li>--}}
+                        {{--                        <li>--}}
+                        {{--                            <a class="dropdown-item" href="javascript:void(0);" data-language="fr">--}}
+                        {{--                                <span class="align-middle">French</span>--}}
+                        {{--                            </a>--}}
+                        {{--                        </li>--}}
+                        {{--                        <li>--}}
+                        {{--                            <a class="dropdown-item" href="javascript:void(0);" data-language="de">--}}
+                        {{--                                <span class="align-middle">German</span>--}}
+                        {{--                            </a>--}}
+                        {{--                        </li>--}}
+                        {{--                        <li>--}}
+                        {{--                            <a class="dropdown-item" href="javascript:void(0);" data-language="pt">--}}
+                        {{--                                <span class="align-middle">Portuguese</span>--}}
+                        {{--                            </a>--}}
+                        {{--                        </li>--}}
                     </ul>
                 </li>
                 <!--/ Language -->
@@ -61,19 +61,21 @@
                 <!--/ Style Switcher -->
 
                 <!-- Quick links  -->
-                <li class="nav-item dropdown-shortcuts navbar-dropdown dropdown me-1 me-xl-0">
-                    <a
-                        class="nav-link btn btn-text-secondary rounded-pill btn-icon dropdown-toggle hide-arrow"
-                        href="javascript:void(0);"
-                        data-bs-toggle="dropdown"
-                        data-bs-auto-close="outside"
-                        aria-expanded="false">
-                        <i class="mdi mdi-view-grid-plus-outline mdi-24px"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-end py-0">
-                        @include('power_system.calculator')
-                    </div>
-                </li>
+                @if(can_access('calculator'))
+                    <li class="nav-item dropdown-shortcuts navbar-dropdown dropdown me-1 me-xl-0">
+                        <a
+                            class="nav-link btn btn-text-secondary rounded-pill btn-icon dropdown-toggle hide-arrow"
+                            href="javascript:void(0);"
+                            data-bs-toggle="dropdown"
+                            data-bs-auto-close="outside"
+                            aria-expanded="false">
+                            <i class="mdi mdi-view-grid-plus-outline mdi-24px"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end py-0">
+                            @include('power_system.calculator')
+                        </div>
+                    </li>
+                @endif
                 <!-- Quick links -->
 
                 <!-- Notification -->
@@ -296,7 +298,8 @@
                                     </div>
                                     <div class="flex-grow-1">
                                         <span class="fw-semibold d-block">{{auth()->user()->name}}</span>
-                                        <small class="text-muted">{{\App\Models\User::ROLES[auth()->user()->role]}}</small>
+                                        <small
+                                            class="text-muted">{{\App\Models\User::ROLES[auth()->user()->role]}}</small>
                                     </div>
                                 </div>
                             </a>
@@ -310,43 +313,43 @@
                                 <span class="align-middle">My Profile</span>
                             </a>
                         </li>
-{{--                        <li>--}}
-{{--                            <a class="dropdown-item" href="pages-account-settings-account.html">--}}
-{{--                                <i class="mdi mdi-cog-outline me-2"></i>--}}
-{{--                                <span class="align-middle">Settings</span>--}}
-{{--                            </a>--}}
-{{--                        </li>--}}
-{{--                        <li>--}}
-{{--                            <a class="dropdown-item" href="pages-account-settings-billing.html">--}}
-{{--                                <span class="d-flex align-items-center align-middle">--}}
-{{--                                    <i class="flex-shrink-0 mdi mdi-credit-card-outline me-2"></i>--}}
-{{--                                    <span class="flex-grow-1 align-middle">Billing</span>--}}
-{{--                                    <span--}}
-{{--                                        class="flex-shrink-0 badge badge-center rounded-pill bg-danger w-px-20 h-px-20">4</span>--}}
-{{--                                </span>--}}
-{{--                            </a>--}}
-{{--                        </li>--}}
-{{--                        <li>--}}
-{{--                            <div class="dropdown-divider"></div>--}}
-{{--                        </li>--}}
-{{--                        <li>--}}
-{{--                            <a class="dropdown-item" href="pages-help-center-landing.html">--}}
-{{--                                <i class="mdi mdi-lifebuoy me-2"></i>--}}
-{{--                                <span class="align-middle">Help</span>--}}
-{{--                            </a>--}}
-{{--                        </li>--}}
-{{--                        <li>--}}
-{{--                            <a class="dropdown-item" href="pages-faq.html">--}}
-{{--                                <i class="mdi mdi-help-circle-outline me-2"></i>--}}
-{{--                                <span class="align-middle">FAQ</span>--}}
-{{--                            </a>--}}
-{{--                        </li>--}}
-{{--                        <li>--}}
-{{--                            <a class="dropdown-item" href="pages-pricing.html">--}}
-{{--                                <i class="mdi mdi-currency-usd me-2"></i>--}}
-{{--                                <span class="align-middle">Pricing</span>--}}
-{{--                            </a>--}}
-{{--                        </li>--}}
+                        {{--                        <li>--}}
+                        {{--                            <a class="dropdown-item" href="pages-account-settings-account.html">--}}
+                        {{--                                <i class="mdi mdi-cog-outline me-2"></i>--}}
+                        {{--                                <span class="align-middle">Settings</span>--}}
+                        {{--                            </a>--}}
+                        {{--                        </li>--}}
+                        {{--                        <li>--}}
+                        {{--                            <a class="dropdown-item" href="pages-account-settings-billing.html">--}}
+                        {{--                                <span class="d-flex align-items-center align-middle">--}}
+                        {{--                                    <i class="flex-shrink-0 mdi mdi-credit-card-outline me-2"></i>--}}
+                        {{--                                    <span class="flex-grow-1 align-middle">Billing</span>--}}
+                        {{--                                    <span--}}
+                        {{--                                        class="flex-shrink-0 badge badge-center rounded-pill bg-danger w-px-20 h-px-20">4</span>--}}
+                        {{--                                </span>--}}
+                        {{--                            </a>--}}
+                        {{--                        </li>--}}
+                        {{--                        <li>--}}
+                        {{--                            <div class="dropdown-divider"></div>--}}
+                        {{--                        </li>--}}
+                        {{--                        <li>--}}
+                        {{--                            <a class="dropdown-item" href="pages-help-center-landing.html">--}}
+                        {{--                                <i class="mdi mdi-lifebuoy me-2"></i>--}}
+                        {{--                                <span class="align-middle">Help</span>--}}
+                        {{--                            </a>--}}
+                        {{--                        </li>--}}
+                        {{--                        <li>--}}
+                        {{--                            <a class="dropdown-item" href="pages-faq.html">--}}
+                        {{--                                <i class="mdi mdi-help-circle-outline me-2"></i>--}}
+                        {{--                                <span class="align-middle">FAQ</span>--}}
+                        {{--                            </a>--}}
+                        {{--                        </li>--}}
+                        {{--                        <li>--}}
+                        {{--                            <a class="dropdown-item" href="pages-pricing.html">--}}
+                        {{--                                <i class="mdi mdi-currency-usd me-2"></i>--}}
+                        {{--                                <span class="align-middle">Pricing</span>--}}
+                        {{--                            </a>--}}
+                        {{--                        </li>--}}
                         <li>
                             <div class="dropdown-divider"></div>
                         </li>

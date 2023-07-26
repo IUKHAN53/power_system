@@ -73,27 +73,39 @@
 
                         <div class="col-md-12 col-lg-12 order-3 order-md-1">
                             <div class="card-body row">
-                                <div class="col-lg-11">
-                                    <div class="col-md">
-                                        <div class="form-floating form-floating-outline">
-                                            <input
-                                                value="{{getNumberRemarks($number)}}"
-                                                type="text"
-                                                class="form-control"
-                                                id="remarks"
-                                                placeholder="Remarks of 0001"
-                                                aria-describedby="floatingInputHelp"/>
-                                            <label for="remarks">Remarks of {{str_replace('hkg', '', $number)}}</label>
-                                            <div id="floatingInputHelp" class="form-text">
+                                @if(can_access('remarks_of_number'))
+                                    <div class="col-lg-11">
+                                        <div class="col-md">
+                                            <div class="form-floating form-floating-outline">
+                                                <input
+                                                    value="{{getNumberRemarks($number)}}"
+                                                    type="text"
+                                                    class="form-control"
+                                                    id="remarks"
+                                                    placeholder="Remarks of 0001"
+                                                    aria-describedby="floatingInputHelp"/>
+                                                <label for="remarks">Remarks
+                                                    of {{str_replace('hkg', '', $number)}}</label>
+                                                <div id="floatingInputHelp" class="form-text">
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-lg-1">
-                                    <button class="btn btn-info mt-1" onclick="saveRemarks('{{$number}}')">
-                                        <i class="fa fa-save"></i> Save</button>
-                                </div>
-
+                                    <div class="col-lg-1">
+                                        <button class="btn btn-info mt-1" onclick="saveRemarks('{{$number}}')">
+                                            <i class="fa fa-save"></i> Save
+                                        </button>
+                                    </div>
+                                @else
+                                    <div class="col-lg-11">
+                                        <div class="col-md">
+                                            Remarks of {{str_replace('hkg', '', $number)}}
+                                            <div class="form-floating form-floating-outline">
+                                                <h3 class="text-center"> Members Only </h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endif
                             </div>
                         </div>
 
@@ -108,136 +120,149 @@
                         <div class="col-md-12 col-lg-12 order-2 order-md-1">
                             <div class="card-body align-items-top">
                                 <h5 class="card-header">Transaction Record</h5>
-                                <div class="table-responsive">
-                                    <table class="table table-striped table-bordered table-hover table-sm">
-                                        <thead>
-                                        <tr>
-                                            <th>Buy Date</th>
-                                            <th>Buy Price</th>
-                                            <th>Buy Vol</th>
-                                            <th>Sell Date</th>
-                                            <th>Sell Price</th>
-                                            <th>Sell Vol</th>
-                                            <th>Different</th>
-                                            <th>Remarks</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-
-                                        <form action="{{route('save-transaction')}}" method="POST">
-                                            @csrf
+                                @if(can_access('transaction_record'))
+                                    <div class="table-responsive">
+                                        <table class="table table-striped table-bordered table-hover table-sm">
+                                            <thead>
                                             <tr>
+                                                <th>Buy Date</th>
+                                                <th>Buy Price</th>
+                                                <th>Buy Vol</th>
+                                                <th>Sell Date</th>
+                                                <th>Sell Price</th>
+                                                <th>Sell Vol</th>
+                                                <th>Different</th>
+                                                <th>Remarks</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
 
-                                                <input type="hidden" name="stockno" value="{{$number}}">
-                                                <td class="text-center">
-                                                    <input type="text" placeholder="DD-MM-YYYY" name="buy_date"
-                                                           class="form-control text-center flatpickr-input active flatpickr-date"
-                                                           value="{{now()->toDateString()}}"
-                                                           @error('buy_date') style="border-color: #FA787E;" @enderror>
-                                                </td>
-                                                <td class="text-center">
-                                                    <input type="text" class="form-control text-center"
-                                                           name="buy_price"
-                                                           @error('buy_price') style="border-color: #FA787E;" @enderror>
-                                                </td>
-                                                <td class="text-center">
-                                                    <input type="text" class="form-control text-center"
-                                                           name="buy_volume"
-                                                           @error('buy_volume') style="border-color: #FA787E;" @enderror>
-                                                </td>
-                                                <td class="text-center">
-                                                    <input type="text" placeholder="DD-MM-YYYY" name="sell_date"
-                                                           class="form-control text-center flatpickr-input active flatpickr-date"
-                                                           value="{{now()->toDateString()}}"
-                                                           @error('sell_date') style="border-color: #FA787E;" @enderror>
-                                                </td>
-                                                <td class="text-center">
-                                                    <input type="text" class="form-control text-center"
-                                                           name="sell_price"
-                                                           @error('sell_price') style="border-color: #FA787E;" @enderror>
-                                                </td>
-                                                <td class="text-center">
-                                                    <input type="text" class="form-control text-center"
-                                                           name="sell_volume"
-                                                           @error('sell_volume') style="border-color: #FA787E;" @enderror>
-                                                </td>
-                                                <td class="text-center">
-                                                    <input type="text" class="form-control text-center"
-                                                           name="difference"
-                                                           @error('difference') style="border-color: #FA787E;" @enderror>
-                                                </td>
-                                                <td class="text-center">
-                                                    <input type="text" class="form-control text-center" name="remarks"
-                                                           @error('remarks') style="border-color: #FA787E;" @enderror>
-                                                </td>
-                                                <td>
-                                                    <button class="btn btn-info mt-1" type="submit">+</button>
-                                                </td>
-                                            </tr>
-                                        </form>
-                                        @foreach($transactions as $item)
-                                            <tr>
-                                                <td class="quick-edit text-center">
-                                                    <input onchange="dataChanged(this, '{{$item->id}}', 'buy_date')"
-                                                           class="quick-edit-input flatpickr-input flatpickr-date text-center "
-                                                           type="text">
-                                                    <span
-                                                        class="quick-edit-text">{{ $item->buy_date }}</span>
-                                                </td>
-                                                <td class="quick-edit text-center">
-                                                    <input onchange="dataChanged(this, '{{$item->id}}', 'buy_price')"
-                                                           class="quick-edit-input text-center "
-                                                           type="text">
-                                                    <span
-                                                        class="quick-edit-text">{{ $item->buy_price }}</span>
-                                                </td>
-                                                <td class="quick-edit text-center">
-                                                    <input onchange="dataChanged(this, '{{$item->id}}', 'buy_volume')"
-                                                           class="quick-edit-input text-center "
-                                                           type="text">
-                                                    <span
-                                                        class="quick-edit-text">{{ $item->buy_volume }}</span>
-                                                </td>
-                                                <td class="quick-edit text-center">
-                                                    <input onchange="dataChanged(this, '{{$item->id}}', 'sell_date')"
-                                                           class="quick-edit-input flatpickr-input flatpickr-date text-center "
-                                                           type="text">
-                                                    <span
-                                                        class="quick-edit-text dates">{{ $item->sell_date }}</span>
-                                                </td>
-                                                <td class="quick-edit text-center">
-                                                    <input onchange="dataChanged(this, '{{$item->id}}', 'sell_price')"
-                                                           class="quick-edit-input text-center "
-                                                           type="text">
-                                                    <span
-                                                        class="quick-edit-text">{{ $item->sell_price }}</span>
-                                                </td>
-                                                <td class="quick-edit text-center">
-                                                    <input onchange="dataChanged(this, '{{$item->id}}', 'sell_volume')"
-                                                           class="quick-edit-input text-center "
-                                                           type="text">
-                                                    <span
-                                                        class="quick-edit-text dates">{{ $item->difference }}</span>
-                                                </td>
-                                                <td class="quick-edit text-center">
-                                                    <input onchange="dataChanged(this, '{{$item->id}}', 'difference')"
-                                                           class="quick-edit-input text-center "
-                                                           type="text">
-                                                    <span
-                                                        class="quick-edit-text dates">{{ $item->remarks }}</span>
-                                                </td>
-                                                <td class="quick-edit text-center">
-                                                    <input onchange="dataChanged(this, '{{$item->id}}', 'remarks')"
-                                                           class="quick-edit-input text-center "
-                                                           type="text">
-                                                    <span
-                                                        class="quick-edit-text dates">{{ $item->sell_volume }}</span>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                        </tbody>
-                                    </table>
-                                </div>
+                                            <form action="{{route('save-transaction')}}" method="POST">
+                                                @csrf
+                                                <tr>
+
+                                                    <input type="hidden" name="stockno" value="{{$number}}">
+                                                    <td class="text-center">
+                                                        <input type="text" placeholder="DD-MM-YYYY" name="buy_date"
+                                                               class="form-control text-center flatpickr-input active flatpickr-date"
+                                                               value="{{now()->toDateString()}}"
+                                                               @error('buy_date') style="border-color: #FA787E;" @enderror>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <input type="text" class="form-control text-center"
+                                                               name="buy_price"
+                                                               @error('buy_price') style="border-color: #FA787E;" @enderror>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <input type="text" class="form-control text-center"
+                                                               name="buy_volume"
+                                                               @error('buy_volume') style="border-color: #FA787E;" @enderror>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <input type="text" placeholder="DD-MM-YYYY" name="sell_date"
+                                                               class="form-control text-center flatpickr-input active flatpickr-date"
+                                                               value="{{now()->toDateString()}}"
+                                                               @error('sell_date') style="border-color: #FA787E;" @enderror>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <input type="text" class="form-control text-center"
+                                                               name="sell_price"
+                                                               @error('sell_price') style="border-color: #FA787E;" @enderror>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <input type="text" class="form-control text-center"
+                                                               name="sell_volume"
+                                                               @error('sell_volume') style="border-color: #FA787E;" @enderror>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <input type="text" class="form-control text-center"
+                                                               name="difference"
+                                                               @error('difference') style="border-color: #FA787E;" @enderror>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <input type="text" class="form-control text-center"
+                                                               name="remarks"
+                                                               @error('remarks') style="border-color: #FA787E;" @enderror>
+                                                    </td>
+                                                    <td>
+                                                        <button class="btn btn-info mt-1" type="submit">+</button>
+                                                    </td>
+                                                </tr>
+                                            </form>
+                                            @foreach($transactions as $item)
+                                                <tr>
+                                                    <td class="quick-edit text-center">
+                                                        <input
+                                                            onchange="dataChanged(this, '{{$item->id}}', 'buy_date')"
+                                                            class="quick-edit-input flatpickr-input flatpickr-date text-center "
+                                                            type="text">
+                                                        <span
+                                                            class="quick-edit-text">{{ $item->buy_date }}</span>
+                                                    </td>
+                                                    <td class="quick-edit text-center">
+                                                        <input
+                                                            onchange="dataChanged(this, '{{$item->id}}', 'buy_price')"
+                                                            class="quick-edit-input text-center "
+                                                            type="text">
+                                                        <span
+                                                            class="quick-edit-text">{{ $item->buy_price }}</span>
+                                                    </td>
+                                                    <td class="quick-edit text-center">
+                                                        <input
+                                                            onchange="dataChanged(this, '{{$item->id}}', 'buy_volume')"
+                                                            class="quick-edit-input text-center "
+                                                            type="text">
+                                                        <span
+                                                            class="quick-edit-text">{{ $item->buy_volume }}</span>
+                                                    </td>
+                                                    <td class="quick-edit text-center">
+                                                        <input
+                                                            onchange="dataChanged(this, '{{$item->id}}', 'sell_date')"
+                                                            class="quick-edit-input flatpickr-input flatpickr-date text-center "
+                                                            type="text">
+                                                        <span
+                                                            class="quick-edit-text dates">{{ $item->sell_date }}</span>
+                                                    </td>
+                                                    <td class="quick-edit text-center">
+                                                        <input
+                                                            onchange="dataChanged(this, '{{$item->id}}', 'sell_price')"
+                                                            class="quick-edit-input text-center "
+                                                            type="text">
+                                                        <span
+                                                            class="quick-edit-text">{{ $item->sell_price }}</span>
+                                                    </td>
+                                                    <td class="quick-edit text-center">
+                                                        <input
+                                                            onchange="dataChanged(this, '{{$item->id}}', 'sell_volume')"
+                                                            class="quick-edit-input text-center "
+                                                            type="text">
+                                                        <span
+                                                            class="quick-edit-text dates">{{ $item->difference }}</span>
+                                                    </td>
+                                                    <td class="quick-edit text-center">
+                                                        <input
+                                                            onchange="dataChanged(this, '{{$item->id}}', 'difference')"
+                                                            class="quick-edit-input text-center "
+                                                            type="text">
+                                                        <span
+                                                            class="quick-edit-text dates">{{ $item->remarks }}</span>
+                                                    </td>
+                                                    <td class="quick-edit text-center">
+                                                        <input
+                                                            onchange="dataChanged(this, '{{$item->id}}', 'remarks')"
+                                                            class="quick-edit-input text-center "
+                                                            type="text">
+                                                        <span
+                                                            class="quick-edit-text dates">{{ $item->sell_volume }}</span>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                @else
+                                    <h3 class="text-center"> Members Only </h3>
+                                @endif
                             </div>
                         </div>
                     </div>
