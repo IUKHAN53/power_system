@@ -51,22 +51,22 @@ class User extends Authenticatable
 
     public function isAdmin()
     {
-        return $this->role === self::ROLE_ADMIN;
+        return $this->role == self::ROLE_ADMIN;
     }
 
     public function isMember()
     {
-        return $this->role === self::ROLE_MEMBER;
+        return $this->role == self::ROLE_MEMBER;
     }
 
     public function isUser()
     {
-        return $this->role === self::ROLE_USER;
+        return $this->role == self::ROLE_USER;
     }
 
     public function isGuest()
     {
-        return $this->role === self::ROLE_GUEST;
+        return $this->role == self::ROLE_GUEST;
     }
 
     public function favourites()
