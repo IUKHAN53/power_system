@@ -31,8 +31,15 @@ class LoginController extends Controller
     /**
      * Create a new controller instance.
      *
-     * @return void
+     * @return array
      */
+
+    protected function credentials(\Illuminate\Http\Request $request)
+    {
+        //return $request->only($this->username(), 'password');
+        return ['email' => $request->{$this->username()}, 'password' => $request->password, 'status' => 1];
+    }
+
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
